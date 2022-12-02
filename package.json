@@ -12,6 +12,7 @@
     "@chakra-ui/react": "^2.4.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@fontsource/poppins": "^4.5.10",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.6",
     "framer-motion": "^6",
@@ -20,6 +21,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "ethers": "^5.7.2"
+    "ethers": "^5.7.2",
+    "hardhat": "^2.12.3"
   }
 }
