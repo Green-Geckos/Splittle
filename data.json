@@ -1,48 +1,45 @@
 {
-    "userDetails":[
-        {
-            "userId" : 0, 
-            "address" : "0x00", 
-            "name" : "foo"
-        }, 
-        {
-            "userId" : 1, 
-            "address" : "0x01", 
-            "name" : "bar"
-        }, 
-        {
-            "userId" : 2, 
-            "address" : "0x02", 
-            "name" : "baz"
-        }
-    ], 
-    "groups":[
-        {
-            "groupId" : 0, 
-            "createdBy" : 1,
-            "members":[
-                0, 
-                2
-            ], 
-            "expensesIds":[
-                0
-            ]
-        }
-    ], 
-    "expenses" :{
-        "expenseId" : 0,
-        "paidBy" : {
-            "0" : 40, 
-            "1" : 60
-        }, 
-        "groupId" : 0,
-        "paymentDetails" :{
-            "AmountPaid" : 69, 
-            "splitDetails" : {
-                "0" : 30, 
-                "1" : 30, 
-                "2" : 40
-            }
-        }
+  "userDetails": [
+    {
+      "userId": 0,
+      "address": "0x00",
+      "name": "foo"
+    },
+    {
+      "userId": 1,
+      "address": "0x01",
+      "name": "bar"
+    },
+    {
+      "userId": 2,
+      "address": "0x02",
+      "name": "baz"
     }
+  ],
+  "groups": [
+    {
+      "groupId": 0,
+      "createdBy": 1,
+      "members": [0, 2],
+      "expensesIds": [0]
+    }
+  ],
+  "expenses": [
+    {
+      "expenseId": 0,
+      "paidBy": {
+        "0": 40,
+        "1": 60
+      },
+      "groupId": 0,
+      "paymentDetails": {
+        "AmountPaid": 69,
+        "splitDetails": {
+          "0": 30,
+          "1": 30,
+          "2": 40
+        }
+      }
+    }
+  ]
 }
