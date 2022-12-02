@@ -1,14 +1,16 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import { ChakraProvider } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
+import '@fontsource/poppins/700.css'
 
 export default function Home() {
   return (
-    <ChakraProvider>
-      <div className={styles.container}>
-        
-      </div>
-    </ChakraProvider>
+    
+      
+<Flex  fontFamily={'poppins.700'} h='100vh' w='100vw' justifyContent='center' alignItems='center' >
+  <Box bg='brand.yellow'  >
+
+  Hello
+  </Box>
+</Flex>
+      
   )
 }
