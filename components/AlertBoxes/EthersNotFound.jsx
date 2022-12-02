@@ -26,8 +26,8 @@ const EthersNotFound = (props) => {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-            <Button colorScheme='blue' onClick={props.onClose} ml={3}>
-                Ok
+            <Button colorScheme='green' onClick={props.onClose} ml={3}>
+                Refresh
             </Button>
             </AlertDialogFooter>
         </AlertDialogContent>

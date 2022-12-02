@@ -1,27 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect, use } from 'react'
 import { useRouter } from 'next/router'
 import { Box, Flex, Button, Input, Text } from '@chakra-ui/react'
 
 import { ethers } from 'ethers'
-import { useEffect, useState } from 'react'
 import EthersNotFound from '../components/AlertBoxes/EthersNotFound'
 
 import '@fontsource/poppins/700.css'
 
 export default function Index() {
-  const [name, setName] = useState('')
-  const [isOpen, setIsOpen] = useState(false)
+  const [name, setName] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [signer, setSigner] = useState();
 
   const router = useRouter()
 
   const onClose = () => {
+    window.location.reload(false);
     setIsOpen(false)
   }
 
   const handleChange = (event) => setName(event.target.value)
   const handleConnectWallet = (event) => {
     event.preventDefault()
-    router.push('/home')
+    connectWallet()
+    // router.push('/home')
   }
 
   useEffect(() => {
@@ -34,14 +36,18 @@ export default function Index() {
 
       await provider.send('eth_requestAccounts', []);
 
-      const signer = provider.getSigner()
-
-      console.log(signer);
+      const signerInstance = provider.getSigner();
+      setSigner(() => signerInstance);
     }
     else {
       console.log('Please make sure that you have metamask installed')
       setIsOpen(() => true)
     }
+  }
+
+  async function connectWallet(){
+    const sign_result = await signer.signMessage("Sign message to confirm");
+    console.log(sign_result);
   }
 
   return (
