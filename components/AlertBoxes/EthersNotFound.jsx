@@ -18,19 +18,16 @@ const EthersNotFound = (props) => {
         <AlertDialogOverlay>
         <AlertDialogContent>
             <AlertDialogHeader fontSize='lg' fontWeight='bold'>
-            Delete Customer
+                Metamask not found
             </AlertDialogHeader>
 
             <AlertDialogBody>
-            Are you sure? You can't undo this action afterwards.
+                Make sure to install Metamask in your browser.
             </AlertDialogBody>
 
             <AlertDialogFooter>
-            <Button onClick={props.onClose}>
-                Cancel
-            </Button>
-            <Button colorScheme='red' onClick={props.onClose} ml={3}>
-                Delete
+            <Button colorScheme='blue' onClick={props.onClose} ml={3}>
+                Ok
             </Button>
             </AlertDialogFooter>
         </AlertDialogContent>
