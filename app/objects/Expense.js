@@ -1,6 +1,6 @@
 
-class Expense{
-    Expense(expenseId, paidBy, groupId, paymentDetails){
+export class Expense{
+    constructor(expenseId, paidBy, groupId, paymentDetails){
         this.expenseId = expenseId;
         this.paidBy = paidBy;
         this.groupId = groupId;

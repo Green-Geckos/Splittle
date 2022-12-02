@@ -1,5 +1,5 @@
-class Group{
-    Group(groupId, createdBy){
+export class Group{
+    constructor(groupId, createdBy){
         this.groupId = groupId;
         this.createdBy = createdBy;
         this.members = [];
@@ -8,8 +8,8 @@ class Group{
     deleteGroup(data){
         //Will do later
     }
-    addMember(data, userId){
-        data.groups.members.push(userId);
+    addMember(data, address){
+        data.groups.members.push(address);
     }
     addExpense(data, expenseId){
         data.groups.expensesIds.push(expenseId);
