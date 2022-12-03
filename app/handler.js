@@ -8,22 +8,22 @@ import {getJSONData, putJSONData} from './fileServer.js';
  * @param {string} groupName -> group Name given by user
  * @param {address[]} members  -> list of user address in the group
  */
-export function createGroupHandler(createdBy, groupName, members){
-    const data = getJSONData();
+export async function createGroupHandler(createdBy, groupName, members){
+    const data = await getJSONData();
     const group = new Group(data.groups.length,  createdBy, groupName, members);
     group.addGroup(data);
-    putJSONData(data);
+    await putJSONData(data);
 }
 
-export function addExpenseHandler(paidBy, groupId, splitDetails, amountPaid, expenseTitle){
-    const data = getJSONData();
+export async function addExpenseHandler(paidBy, groupId, splitDetails, amountPaid, expenseTitle){
+    const data = await getJSONData();
     const expense = new Expense(data.expenses.length, expenseTitle, amountPaid, groupId, paidBy, splitDetails);
     expense.addExpense(data);
-    putJSONData(data);
+    await putJSONData(data);
 }
 
-export function addUserHandler(userAddress, username, ens){
-    const data = getJSONData();
+export async function addUserHandler(userAddress, username, ens, fileCID){
+    const data = await getJSONData(fileCID);
 
     // if user already exists
     if(data.userDetails.find(user => user.userAddress === userAddress)){
@@ -33,11 +33,11 @@ export function addUserHandler(userAddress, username, ens){
     }
     const user = new User(userAddress, username, ens);
     user.addUser(data);
-    putJSONData(data);
+    await putJSONData(data);
 }
 
-export function settleHandler(from, to, amount, groupId){
-    const data = getJSONData();
+export async function settleHandler(from, to, amount, groupId){
+    const data = await getJSONData();
     let paidBy = {};
     paidBy[from] = 100;
     let paidTo = {};
@@ -45,14 +45,14 @@ export function settleHandler(from, to, amount, groupId){
 
     let expense = new Expense(data.expenses.length, `${from} and ${to} settlement`, amount, groupId, paidBy, paidTo);
     expense.addSettleExpense(data);
-    putJSONData(data);
+    await putJSONData(data);
 }
 
 
 
-export function groupRepresentationData(groupId, userAddress){
+export async function groupRepresentationData(groupId, userAddress){
     // Return JSON Metadata
-    const data = getJSONData();
+    const data = await getJSONData();
     const returnData = {};
     const groupIndex = data.groups.findIndex((ele) => {
         return ele.groupId === groupId;
@@ -103,12 +103,12 @@ export function groupRepresentationData(groupId, userAddress){
     return returnData;
 }
 
-export function landingPageHandler(userAddress) {
-    const data = getJSONData();
+export async function landingPageHandler(userAddress) {
+    const data = await getJSONData();
     const returnData = {};
     returnData.groups = {}
-    data.groups.forEach(gp => {
-        returnData.groups[gp.groupId] = groupRepresentationData(gp.groupId, userAddress);
+    data.groups.forEach(async gp => {
+        returnData.groups[gp.groupId] = await groupRepresentationData(gp.groupId, userAddress);
     });
     returnData.user = data.userDetails.find((ele) => ele.userAddress === userAddress);
     return returnData;

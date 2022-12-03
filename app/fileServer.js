@@ -1,21 +1,21 @@
 import fs from 'fs';
 const dataLocation = 'data.json';
 
-let fileCID;
+let fileCID = "bafybeiaiepjlf47zjqrlpiemalf2uekxq7366wxmelsxwdjulm7ny3n2m4";
 
-export function getJSONData() {
-    const data = fs.readFileSync(dataLocation, 'utf8');
-    const parsedData = JSON.parse(data);
-    return parsedData;
+export async function getJSONData() {
+    const res = await getDataFromWeb3Storage();
+    return res.json();
 }
 
 export function getLatestfileCID() {
     return fileCID;
 }
 
-export function putJSONData(data){
+export async function putJSONData(data){
     const stringifiedData = JSON.stringify(data, undefined, 2);
     fs.writeFileSync(dataLocation, stringifiedData);
+    await putDataOnWeb3Storage();
 }
 
 // Web3 Storage APIs

@@ -69,7 +69,7 @@ export default function Index() {
     setGroupMemberAddress('')
   }
 
-  const handleCreateGroup = (event) => {
+  const handleCreateGroup = async (event) => {
     if (groupName.length == 0 && groupMembers.length == 0) {
       setGroupNameError(true)
       setGroupMemebersError(true)
@@ -80,10 +80,14 @@ export default function Index() {
 
       setGroupMemebersError(true)
     } else {
+      await axios.post('/api/createGroupHandler', {
+        groupName: groupName,
+        groupMembers: groupMembers,
+        members: groupMembers
+      });
       setGroupMemberAddress('')
       setGroupName('')
       onNewGroupClose()
-      null
     }
   }
   const testGroup = ['Group 1', 'Group 2', 'Group 3']

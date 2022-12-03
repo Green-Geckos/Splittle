@@ -14,6 +14,8 @@ export default function Index() {
   const [isOpen, setIsOpen] = useState(false);
   const [provider, setProvider] = useState();
   const [signer, setSigner] = useState();
+  // const [fileCID, setfileCID] = useState("bafybeiaiepjlf47zjqrlpiemalf2uekxq7366wxmelsxwdjulm7ny3n2m4");
+ 
   const {
     handleSubmit,
     register,
@@ -35,10 +37,16 @@ export default function Index() {
     if (connected) {
       const address = await signer.getAddress();
       localStorage.setItem("ACCOUNT_ADDRESS", address);
-      axios.post('/api/addUserHandler', {
+      await axios.post('/api/addUserHandler', {
         username: name,
-        userAddress: address
-      })
+        userAddress: address, 
+        // fileCID : fileCID
+      });
+      // const res = await axios.get(
+      //   '/api/getLatestfileCID',
+      // );
+      // res ? setfileCID(res.data.fileCID) : null;
+      // console.log("fileCID here madarchod", fileCID);
       router.push('/home');
     }
   }

@@ -1,67 +1,11 @@
 {
   "userDetails": [
     {
-      "address": "0x00",
-      "name": "ram",
-      "balance": 20,
-      "ens": "ram.eth"
-    },
-    {
-      "address": "0x01",
-      "name": "shyam",
-      "balance": -30,
-      "ens": "shyam.eth"
-    },
-    {
-      "address": "0x02",
-      "name": "balram",
-      "balance": 10,
-      "ens": "balram.eth"
+      "address": "0x482fB4cC32DEd74645Cb79D9589a03a0Acc563d3",
+      "name": "Shaleen Bansal",
+      "balance": 0
     }
   ],
-  "groups": [
-    {
-      "groupId": 0,
-      "createdBy": "0x01",
-      "members": [
-        "0x00",
-        "0x02",
-        "0x01"
-      ],
-      "groupName": "bhai",
-      "expensesIds": [
-        0
-      ]
-    }
-  ],
-  "expenses": [
-    {
-      "expenseId": 0,
-      "amountPaid": 100,
-      "groupId": 0,
-      "paidBy": {
-        "0x00": 100,
-        "0x01": 0,
-        "0x02": 0
-      },
-      "splitDetails": {
-        "0x00": 30,
-        "0x01": 30,
-        "0x02": 40
-      },
-      "expenseTitle": "jungle"
-    },
-    {
-      "expenseId": 1,
-      "amountPaid": 50,
-      "groupId": 0,
-      "paidBy": {
-        "0x02": 100
-      },
-      "splitDetails": {
-        "0x00": 100
-      },
-      "expenseTitle": "0x02 and 0x00 settlement"
-    }
-  ]
+  "groups": [],
+  "expenses": []
 }
