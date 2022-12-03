@@ -32,12 +32,12 @@ export default function Index() {
     onClose: onNewGroupClose
   } = useDisclosure()
 
-  const { 
-    isOpen: isAddExpensesOpen, 
-    onOpen: onAddExpensesOpen, 
-    onClose: onAddExpensesClose 
+  const {
+    isOpen: isAddExpensesOpen,
+    onOpen: onAddExpensesOpen,
+    onClose: onAddExpensesClose
   } = useDisclosure()
-  
+
   const [mounted, setMounted] = useState(false)
   const [data, setData] = useState({})
   const [groupName, setGroupName] = useState('')
@@ -46,8 +46,8 @@ export default function Index() {
   const [groupNameError, setGroupNameError] = useState(false)
   const [groupMembersError, setGroupMemebersError] = useState(false)
   const [totalAmount, setTotalAmount] = useState(0)
-  
-  
+
+
   useEffect(() => {
     setMounted(true)
   })
@@ -97,18 +97,16 @@ export default function Index() {
           <Flex w='100%' h={'80px'} bg='brand.purple' >
             <Flex w='100%' float={'left'} />
             <Flex h='100%' alignItems={'center'} float={'right'} mr={4} >
-
-
-              <Button 
-                mr={4} 
-                onClick={onNewGroupOpen} 
-                leftIcon={<AddIcon />} 
-                colorScheme='teal' 
-                variant='solid' 
+              <Button
+                mr={4}
+                onClick={onNewGroupOpen}
+                leftIcon={<AddIcon />}
+                colorScheme='teal'
+                variant='solid'
                 size={'sm'} >
                 New Group
               </Button>
-              <Name ensName="0x8791653aa21c1D9b55ADdadf92bEb7c60E42d72C"/>
+              <Name ensName="0x8791653aa21c1D9b55ADdadf92bEb7c60E42d72C" />
               <Modal isOpen={isNewGroupOpen} onClose={onNewGroupClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -140,12 +138,9 @@ export default function Index() {
                     <Flex flexDirection='column'>
                       <Flex mt={2}  >Added Memebers:</Flex>
                       <List>
-                        {
-                          groupMembers.map((address) => (
+                        { groupMembers.map((address) => (
                             <ListItem key={address}>{address}</ListItem>
-                          ))
-
-                        }
+                          ))}
                       </List>
 
                     </Flex>
@@ -161,7 +156,6 @@ export default function Index() {
 
               <Flex alignItems='center' h='100%'>
                 <Avatar src='https://bit.ly/broken-link' />
-
               </Flex>
 
             </Flex>
@@ -174,7 +168,11 @@ export default function Index() {
                     <ListItem _hover={{
                       background: 'black',
                       color: 'white'
-                    }} borderRadius='8px' p={1} cursor={'pointer'} onClick={() => console.log('hello')} >
+                    }} 
+                      borderRadius='8px' 
+                      p={1} 
+                      cursor={'pointer'} 
+                      onClick={() => console.log('hello')} >
                       {groupName}
                     </ListItem>
                     <Divider />
@@ -193,63 +191,61 @@ export default function Index() {
                 ) : (
                   <Flex mt={2}>
                     No transactions included
-                </Flex>
-            )
-        }
-     </Flex>
-    <Button onClick={onAddExpensesOpen} position={'absolute'} width='80%' maxW='600px' colorScheme='teal' bottom='20px' zIndex={1} >
-        Add Expenses
-    </Button>
-    <Modal isOpen={isAddExpensesOpen} onClose={onAddExpensesClose}  >
-        <ModalOverlay />
-        <ModalContent  >
-          <ModalHeader>Add New Expense</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody maxH={'50vh'} overflow='auto'>
-            <Flex>
-            <Flex alignItems={'center'} fontWeight={'bold'} >Total Amount:</Flex>
-            <Input htmlSize={4} width='auto' ml={2}  />
-            </Flex>
-            <Flex fontWeight={'bold'} >Paid by:</Flex>
-            <Flex flexDir={'column'}>
-              {
-                testGroup.map((member) => (
-                  <Flex key={member} w='100%' m={2} >
-                  
-                  <Flex w='33%' alignItems={'center'} >{member}</Flex>
-                  <Flex alignItems={'center'} w='33%'>
-                  <Input htmlSize={4} width='auto' />%
                   </Flex>
-                  <Flex w='33%' alignItems={'center'} justifyContent='center' >{member} MATIC</Flex>
-                  </Flex>
-                ))
+                )
               }
             </Flex>
-            <Flex fontWeight={'bold'}>Split Between:</Flex>
-            <Flex flexDir={'column'}>
-              {
-                testGroup.map((member) => (
-                  <Flex key={member} w='100%' m={2} >
-                  
-                  <Flex w='33%' alignItems={'center'}  >{member}</Flex>
-                  <Flex alignItems={'center'} justifyContent='center' w='33%'>
-                  <Input htmlSize={4} width='auto' />%
-                  </Flex>
-                  <Flex w='33%' alignItems={'center'} justifyContent='center' >{member} MATIC</Flex>
-                  </Flex>
-                ))
-              }
-            </Flex>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={() => null}>
-              Create
+            <Button onClick={onAddExpensesOpen} position={'absolute'} width='80%' maxW='600px' colorScheme='teal' bottom='20px' zIndex={1} >
+              Add Expenses
             </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </Flex>
+            <Modal isOpen={isAddExpensesOpen} onClose={onAddExpensesClose}  >
+              <ModalOverlay />
+              <ModalContent  >
+                <ModalHeader>Add New Expense</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody maxH={'50vh'} overflow='auto'>
+                  <Flex>
+                    <Flex alignItems={'center'} fontWeight={'bold'} >Total Amount:</Flex>
+                    <Input htmlSize={4} width='auto' ml={2} />
+                  </Flex>
+                  <Flex fontWeight={'bold'} >Paid by:</Flex>
+                  <Flex flexDir={'column'}>
+                    {
+                      testGroup.map((member) => (
+                        <Flex key={member} w='100%' m={2} >
+                          <Flex w='33%' alignItems={'center'} >{member}</Flex>
+                          <Flex alignItems={'center'} w='33%'>
+                            <Input htmlSize={4} width='auto' />%
+                          </Flex>
+                          <Flex w='33%' alignItems={'center'} justifyContent='center' >{member} MATIC</Flex>
+                        </Flex>
+                      ))
+                    }
+                  </Flex>
+                  <Flex fontWeight={'bold'}>Split Between:</Flex>
+                  <Flex flexDir={'column'}>
+                    {
+                      testGroup.map((member) => (
+                        <Flex key={member} w='100%' m={2} >
+                          <Flex w='33%' alignItems={'center'}  >{member}</Flex>
+                          <Flex alignItems={'center'} justifyContent='center' w='33%'>
+                            <Input htmlSize={4} width='auto' />%
+                          </Flex>
+                          <Flex w='33%' alignItems={'center'} justifyContent='center' >{member} MATIC</Flex>
+                        </Flex>
+                      ))
+                    }
+                  </Flex>
+                </ModalBody>
+
+                <ModalFooter>
+                  <Button colorScheme='blue' mr={3} onClick={() => null}>
+                    Create
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
+          </Flex>
 
         </Flex>
 

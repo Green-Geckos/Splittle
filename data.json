@@ -17,6 +17,11 @@
       "name": "balram",
       "balance": 10,
       "ens": "balram.eth"
+    },
+    {
+      "address": "0x8791653aa21c1D9b55ADdadf92bEb7c60E42d72C",
+      "name": "",
+      "balance": 0
     }
   ],
   "groups": [

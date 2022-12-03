@@ -8,8 +8,11 @@ const address = process.env.CONTRACT_ADDRESS;
 
 const provider = ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
+
+console.log(`address is ${address}`);
+
 const splittle_contract = new ethers.Contract(
-    address= address,
+    address=address,
     abi=abi,
     signerOrProvider=signer
 )
@@ -17,15 +20,15 @@ const splittle_contract = new ethers.Contract(
 const connection = splittle_contract.connect(signer)
 
 // remind
-function call_remind_function(){
+function call_remind_function(address, amount){
     // TODO
-    connection.remind("", 30);
+    connection.remind(address, amount);
 }
 
 // set storage identifier
-function set_storage_identifier(){
+function set_storage_identifier(ipfs_hash){
     // TODO
-    connection.setStorageIdentifier("IPFS_HASH");
+    connection.setStorageIdentifier(ipfs_hash);
 }
 
 // approve
