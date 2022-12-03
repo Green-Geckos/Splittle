@@ -1,6 +1,6 @@
 import { useState, useEffect, use } from 'react'
 import { useRouter } from 'next/router'
-import { Box, Flex, Button, Input, Text } from '@chakra-ui/react'
+import { Box, Flex, Button, Input, Text, FormControl, FormLabel, FormHelperText } from '@chakra-ui/react'
 
 import { ethers } from 'ethers'
 import EthersNotFound from '../components/AlertBoxes/EthersNotFound'
@@ -22,6 +22,7 @@ export default function Index() {
   const handleChange = (event) => setName(event.target.value)
   const handleConnectWallet = (event) => {
     event.preventDefault()
+    console.log(event)
     connectWallet()
     // router.push('/home')
   }
@@ -46,8 +47,13 @@ export default function Index() {
   }
 
   async function connectWallet(){
-    const sign_result = await signer.signMessage("Sign message to confirm");
-    console.log(sign_result);
+    try{
+      const sign_result = await signer.signMessage("Sign message to confirm");
+      console.log(sign_result);
+    }
+    catch{
+      console.log('Signing message failed');
+    }
   }
 
   return (
@@ -59,18 +65,22 @@ export default function Index() {
         </Box>
         <Flex justifyContent={'center'} alignItems='center' h='100%' w='100%' >
           <Flex justifyContent={'center'} alignItems='center' w='80%' h='30vh' maxW='350px' >
-            <Flex flexDir={'column'} w='100%'>
-              <Text mb='8px'>Name: {name}</Text>
-              <Input
-                value={name}
-                onChange={handleChange}
-                placeholder='Your name'
-                size='sm'
-              />
-              <Button onClick={handleConnectWallet} colorScheme='teal' w='100%' size='lg' mt={4} >
-                Connect Wallet
-              </Button>
-            </Flex>
+            <FormControl>
+              <Flex flexDir={'column'} w='100%'>
+                <FormLabel mb='8px'>Name:</FormLabel>
+                <Input
+                  value={name}
+                  onChange={handleChange}
+                  placeholder='Your name'
+                  required={true}
+                  size='md'
+                />
+                <FormHelperText fontSize={'xs'}>This is like a nick name stored with us for this address</FormHelperText>
+                <Button onClick={handleConnectWallet} colorScheme='teal' w='100%' size='md' mt={4} >
+                  Connect Wallet
+                </Button>
+              </Flex>
+            </FormControl>
           </Flex>
 
         </Flex>
