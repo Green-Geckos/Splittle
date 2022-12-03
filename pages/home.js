@@ -87,21 +87,29 @@ export default function Index() {
 
   
   
-  useEffect(async () => {
+  useEffect(() => {
     const userAddress = localStorage.getItem("ACCOUNT_ADDRESS")
     if(userAddress){
       setUserAddress(userAddress);
-      const response = await axios.get(
-        '/api/landingPageData',
-        data = {
-          userAddress: userAddress,
-          fileCID: fileCID
+      const fetchData = async () => {
+        const response = await axios.post(
+          '/api/landingPageHandler',
+          {
+            userAddress: userAddress,
+            fileCID: fileCID
+          }
+        );
+        console.log("khkf", response.data);
+        if (response.data) {
+          setData(response.data);
+          console.log(`after settings `, data);
         }
-      );
-      console.log(response.data);
+      }
+      fetchData()
     }
     setMounted(true)
-  })
+  }, [])
+
   
   const handleGroupName = (event) => {
     setGroupName(event.target.value)
@@ -149,9 +157,16 @@ export default function Index() {
     }
   }
   
-  const handleCreateExpense = () => {
+  const handleCreateExpense = async () => {
     if (expenseName.length !== 0 && totalAmount !== 0 && Object.keys(paidBy).length !== 0 && Object.keys(splitBetween).length !== 0) {
-      // Add data sent to backend
+      await axios.post('/api/createExpenseHandler', {
+        paidBy: paidBy,
+        groupId: selectedGroupId,
+        splitDetails: splitBetween,
+        amountPaid: totalAmount,
+        expenseTitle : expenseName,
+        fileCID : fileCID
+      });
       setExpenseName('')
       setTotalAmount(0)
       setPaidBy({})
@@ -164,7 +179,7 @@ export default function Index() {
   }
 
 
-  if (mounted) {
+  if (mounted && data) {
     return (
       <>
 <Flex flexDirection={'column'} fontFamily={'poppins.700'} h='100vh' w='100vw'>
@@ -236,7 +251,7 @@ export default function Index() {
     <Flex  justifyContent={'center'} bg='gray.200' alignItems='center' h='100%' w='100vw' >
       <Flex overflow={'auto'} h='95%' w='30%' maxW={'300px'} bg='white' m={2} borderRadius='15px' >
         <List spacing={3} p={1} mt={2} w='100%' >
-        {Object.keys(test.groups).map((groupId) => (
+        {Object.keys(data.groups).map((groupId) => (
           <>
           <ListItem _hover={{
             background: 'black',
@@ -246,7 +261,7 @@ export default function Index() {
             backgroundColor: 'red'
           }} 
           borderRadius='8px' p={1} cursor={'pointer'} onClick={() => setSelectedGroupName(groupId)} >
-            {test.groups[groupId]['groupName']}
+            {data.groups[groupId]['groupName']}
           </ListItem>
           <Divider />
           </>
@@ -281,8 +296,8 @@ export default function Index() {
           <ModalBody maxH={'50vh'}  overflow='auto'>
             <Flex>
             <Select onChange={(event) => setSelectedGroupId(event.target.value)} value={selectedGroupId} placeholder='Choose Group' m={2} >
-              {Object.keys(test.groups).map((groupId) => (
-                <option value={groupId}>{test.groups[groupId]['groupName']}</option>
+              {Object.keys(data.groups).map((groupId) => (
+                <option value={groupId}>{data.groups[groupId]['groupName']}</option>
 
               ))}
       </Select>
@@ -302,7 +317,7 @@ export default function Index() {
             <Flex fontWeight={'bold'} >Paid by:</Flex>
             <Flex flexDir={'column'}>
               {
-                test.groups[selectedGroupId]['members'].map((member) => (
+                data.groups[selectedGroupId]['members'].map((member) => (
                   <Flex key={member} w='100%' m={2} >
                   {/* Paid By */}
                   <Flex w='33%' alignItems={'center'} >{member}</Flex>
@@ -321,7 +336,7 @@ export default function Index() {
             <Flex mt={4} fontWeight={'bold'}>Split Between:</Flex>
             <Flex flexDir={'column'}>
               {
-                test.groups[selectedGroupId]['members'].map((member) => (
+                data.groups[selectedGroupId]['members'].map((member) => (
                   <Flex key={member} w='100%' m={2} >
                   {/* Split Between */}
                   <Flex w='33%' alignItems={'center'}>{member}</Flex>

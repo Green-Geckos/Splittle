@@ -6,18 +6,7 @@
       "balance": 0
     }
   ],
-  "groups": [
-    {
-      "groupId": 0,
-      "createdBy": "0x482fB4cC32DEd74645Cb79D9589a03a0Acc563d3",
-      "members": [
-        "0x0",
-        "0x482fB4cC32DEd74645Cb79D9589a03a0Acc563d3"
-      ],
-      "groupName": "group1",
-      "expensesIds": []
-    }
-  ],
+  "groups": [],
   "expenses": [],
-  "fileCID": "bafybeiep2ak2i6mk2cu6wxg7zzqpadzqi7y7asocam73bl7ryg5oern6rm"
+  "fileCID": "bafybeifneutplhq3t7wdkeh2ckw7arb5vwdpd4bj3tk2axsszd2km2qngu"
 }

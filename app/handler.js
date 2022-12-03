@@ -110,6 +110,6 @@ export async function landingPageHandler(userAddress, fileCID) {
     data.groups.forEach(async gp => {
         returnData.groups[gp.groupId] = await groupRepresentationData(gp.groupId, userAddress, fileCID);
     });
-    returnData.user = data.userDetails.find((ele) => ele.userAddress === userAddress);
+    returnData.user = data.userDetails.find((ele) => ele.address === userAddress);
     return returnData;
 }
