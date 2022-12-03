@@ -1,10 +1,19 @@
 import { getJSONData } from "../app/fileServer.js";
 import * as hd from "../app/handler.js";
+import fs from 'fs';
 
 
-hd.addUserHandler("0x00", "ram");
-hd.addUserHandler("0x01", "shyam");
-hd.addUserHandler("0x02", "balram");
+fs.writeFileSync('../data.json', JSON.stringify({
+    "userDetails": [],
+    "groups": [],
+    "expenses": []
+  }, undefined, 2));
+
+
+
+hd.addUserHandler("0x00", "ram", "ram.eth");
+hd.addUserHandler("0x01", "shyam", "shyam.eth");
+hd.addUserHandler("0x02", "balram", "balram.eth");
 
 
 hd.createGroupHandler("0x01", "bhai", ["0x00", "0x02"]);
