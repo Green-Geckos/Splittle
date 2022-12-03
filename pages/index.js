@@ -6,8 +6,6 @@ import { ethers } from 'ethers'
 import { useForm } from 'react-hook-form';
 import EthersNotFound from '../components/AlertBoxes/EthersNotFound';
 
-import {printAddress} from '../app/test';
-
 import '@fontsource/poppins/700.css'
 
 export default function Index() {
