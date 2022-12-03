@@ -101,8 +101,9 @@ export function groupRepresentationData(groupId, userAddress){
 export function landingPageHandler(userAddress) {
     const data = getJSONData();
     const returnData = {};
+    returnData.groups = {}
     data.groups.forEach(gp => {
-        returnData[gp.groupId] = groupRepresentationData(gp.groupId, userAddress);
+        returnData.groups[gp.groupId] = groupRepresentationData(gp.groupId, userAddress);
     });
     returnData.user = data.users.find((ele) => ele.userAddress === userAddress);
     return returnData;

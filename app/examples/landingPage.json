@@ -4,17 +4,20 @@
         "userAddress" : "0x00", 
         "ens" : "ram.eth"
     },
-    "groupId1": {
-        "groupName" : "groupName1",
-        "userBalancesData" : {
-            "0x02" : 230,
-            "0x032" : -50
-        },
-        "expenses" :[
-            {
-                "title" : "jungle", 
-                "amountPaidByUser" : 70
-            }
-        ]
+    "groups" : {
+        "groupId1": {
+            "groupName" : "groupName1",
+            "groupId" : "groupId1",
+            "userBalancesData" : {
+                "0x02" : 230,
+                "0x032" : -50
+            },
+            "expenses" :[
+                {
+                    "title" : "jungle", 
+                    "amountPaidByUser" : 70
+                }
+            ]
+        }
     }
 }
