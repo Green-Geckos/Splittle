@@ -1,23 +1,28 @@
 {
-    "user" : {
-        "username" : "ram", 
-        "userAddress" : "0x00", 
-        "ens" : "ram.eth"
-    },
-    "groups" : {
-        "groupId1": {
-            "groupName" : "groupName1",
-            "groupId" : "groupId1",
-            "userBalancesData" : {
-                "0x02" : 230,
-                "0x032" : -50
-            },
-            "expenses" :[
-                {
-                    "title" : "jungle", 
-                    "amountPaidByUser" : 70
-                }
-            ]
-        }
+    "groups": {
+      "0": {
+        "groupId": 0,
+        "groupName": "bhai",
+        "members": [
+          "0x00",
+          "0x02",
+          "0x01"
+        ],
+        "userBalancesData": {
+          "0x00": 0,
+          "0x02": -10,
+          "0x01": 30
+        },
+        "expenses": [
+          {
+            "title": "jungle",
+            "amountPaidByUser": 100
+          },
+          {
+            "title": "0x02 and 0x00 settlement",
+            "amountPaidByUser": 0
+          }
+        ]
+      }
     }
-}
+  }

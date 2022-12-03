@@ -13,20 +13,14 @@ export class Expense{
         const addresses = Object.keys(this.paidBy);
         for(let i = 0; i < addresses.length; i++){
             const address = addresses[i];
-            //console.log(address);
             let paid = this.paidBy[address];
-            //console.log(paid);
             let owe = this.splitDetails[address];
-            //console.log(owe);
-            //console.log(this.amountPaid);
-            //console.log((paid-owe)*(this.amountPaid)/100);
             if(!paid) paid = 0;
             if(!owe) owe = 0;
             const userIndex = data.userDetails.findIndex((ele) => ele.address === address);
             data.userDetails[userIndex].balance += (paid-owe)*this.amountPaid/100;
         }
         const groupIndex = data.groups.findIndex((ele) => ele.groupId === this.groupId);
-        console.log(this.groupId, groupIndex);
         data.groups[groupIndex].expensesIds.push(this.expenseId);
     }
 
@@ -42,9 +36,5 @@ export class Expense{
         data.userDetails[fromUserIndex].balance += amount;
         data.userDetails[toUserIndex].balance -= amount;
 
-    }
-
-    deleteExpense(data){
-        //Will do later
     }
 }

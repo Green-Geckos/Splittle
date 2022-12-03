@@ -38,8 +38,6 @@ export function addUserHandler(userAddress, username, ens){
 
 export function settleHandler(from, to, amount, groupId){
     const data = getJSONData();
-   //const groupIndex = data.groups.findIndex((ele) => ele.groupId === groupId);
-    //const group = data.groups[groupIndex];
     let paidBy = {};
     paidBy[from] = 100;
     let paidTo = {};
@@ -112,6 +110,6 @@ export function landingPageHandler(userAddress) {
     data.groups.forEach(gp => {
         returnData.groups[gp.groupId] = groupRepresentationData(gp.groupId, userAddress);
     });
-    returnData.user = data.users.find((ele) => ele.userAddress === userAddress);
+    returnData.user = data.userDetails.find((ele) => ele.userAddress === userAddress);
     return returnData;
 }

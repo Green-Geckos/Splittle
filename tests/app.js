@@ -3,7 +3,7 @@ import * as hd from "../app/handler.js";
 import fs from 'fs';
 
 
-fs.writeFileSync('../data.json', JSON.stringify({
+fs.writeFileSync('./data.json', JSON.stringify({
     "userDetails": [],
     "groups": [],
     "expenses": []
@@ -31,9 +31,10 @@ hd.addExpenseHandler({
 
 hd.settleHandler("0x02", "0x00", 50, 0);
 
-console.log(JSON.stringify(getJSONData(), undefined, 2));
-console.log(JSON.stringify(hd.groupRepresentationData(0, "0x00"), undefined, 2));
-console.log(JSON.stringify(hd.groupRepresentationData(0, "0x01"), undefined, 2));
-console.log(JSON.stringify(hd.groupRepresentationData(0, "0x02"), undefined, 2));
+// console.log(JSON.stringify(getJSONData(), undefined, 2));
+// console.log(JSON.stringify(hd.groupRepresentationData(0, "0x00"), undefined, 2));
+// console.log(JSON.stringify(hd.groupRepresentationData(0, "0x01"), undefined, 2));
+// console.log(JSON.stringify(hd.groupRepresentationData(0, "0x02"), undefined, 2));
 // console.log(JSON.stringify(hd.landingPageHandler("0x01"), undefined, 2));
 
+console.log(JSON.stringify(hd.landingPageHandler("0x00"), undefined, 2));
