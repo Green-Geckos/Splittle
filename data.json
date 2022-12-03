@@ -3,17 +3,20 @@
     {
       "address": "0x00",
       "name": "ram",
-      "balance": 20
+      "balance": 20,
+      "ens": "ram.eth"
     },
     {
       "address": "0x01",
       "name": "shyam",
-      "balance": -30
+      "balance": -30,
+      "ens": "shyam.eth"
     },
     {
       "address": "0x02",
       "name": "balram",
-      "balance": 10
+      "balance": 10,
+      "ens": "balram.eth"
     }
   ],
   "groups": [

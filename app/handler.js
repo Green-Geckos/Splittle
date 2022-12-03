@@ -22,8 +22,8 @@ export function addExpenseHandler(paidBy, groupId, splitDetails, amountPaid, exp
     putJSONData(data);
 }
 
-export function addUserHandler(userAddress, username){
-    const user = new User(userAddress, username);
+export function addUserHandler(userAddress, username, ens){
+    const user = new User(userAddress, username, ens);
     const data = getJSONData();
     user.addUser(data);
     putJSONData(data);
