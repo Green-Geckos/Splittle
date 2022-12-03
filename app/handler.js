@@ -4,7 +4,6 @@ import {Expense} from './objects/Expense';
 import {getJSONData, putJSONData} from './fileServer.js';
 
 /**
- * 
  * @param {address} createdBy -> User Address
  * @param {string} groupName -> group Name given by user
  * @param {address[]} members  -> list of user address in the group
@@ -16,7 +15,7 @@ function createGroupHandler(createdBy, groupName, members){
     group.addGroup(data);
     putJSONData(data);
 }
-function addExpenseHandler(paidBy, groupId, paymentDetails){
+function addExpenseHandler(paidBy, groupId, splitDetails, amountPaid){
     //expenseId
     const expense = new Expense(expenseId, amountPaid, groupId, paidBy, splitDetails);
     const data = getJSONData();
@@ -29,7 +28,15 @@ function addUserHandler(){
     user.addUser(data);
     putJSONData(data);
 }
-function settleHandler(from, to, amount){
+function settleHandler(from, to, amount, groupId){
     const data = getJSONData();
-    
+   //const groupIndex = data.groups.findIndex((ele) => ele.groupId === groupId);
+    //const group = data.groups[groupIndex];
+    let paidBy = {};
+    paidBy[from] = amount;
+    let paidTo = {};
+    paidTo[to] = amount;
+    const expense = new Expense(expenseId, amount, groupId, paidBy, paidTo);
+    expense.addExpense(data);
+    putJSONData();
 }

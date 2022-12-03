@@ -3,17 +3,20 @@
         {
             "address" : "0x00", 
             "userName" : "foo",
-            "balance" : -12
+            "balance" : -12,
+            "groups": []
         }, 
         {
             "address" : "0x01", 
             "userName" : "bar",
-            "balance" : 26
+            "balance" : 26,
+            "groups": []
         }, 
         {
             "address" : "0x02", 
             "userName" : "baz",
-            "balance" : -14
+            "balance" : -14,
+            "groups": []
         }
     ], 
     "groups":[
