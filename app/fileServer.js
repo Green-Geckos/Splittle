@@ -2,11 +2,19 @@ const dataLocation = 'data.json';
 
 let fileCID;
 
-export function returnJSONData() {
+export function getJSONData() {
     const data = fs.readFileSync(dataLocation, 'utf8');
     const parsedData = JSON.parse(data);
     return parsedData;
 }
+
+
+export function putJSONData(data){
+    const stringifiedData = JSON.stringify(data);
+    fs.writeFileSync(dataLocation, stringifiedData);
+}
+
+
 
 // Web3 Storage APIs
 
