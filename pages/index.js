@@ -8,6 +8,7 @@ import { Box, Flex,
 
 import { ethers } from 'ethers'
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 import EthersNotFound from '../components/AlertBoxes/EthersNotFound';
 
 import '@fontsource/poppins/700.css'
@@ -31,14 +32,18 @@ export default function Index() {
   }
 
   const handleChange = (event) => setName(event.target.value)
+
   const handleConnectWallet = async (event) => {
     event.preventDefault()
-    console.log(event)
     const connected  = await connectWallet()
     if (connected) {
       const address = await signer.getAddress();
       localStorage.setItem("ACCOUNT_ADDRESS", address);
-      router.push('/home')
+      axios.post('/api/addUserHandler', {
+        username: name,
+        userAddress: address
+      })
+      router.push('/home');
     }
   }
 
@@ -93,6 +98,7 @@ export default function Index() {
                       required: 'This is required',
                       minLength: { value: 4, message: 'Minimum length should be 4' },
                     })}
+                    onChange={handleChange}
                     size='md'
                   />
                   <FormHelperText

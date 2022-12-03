@@ -16,7 +16,6 @@ import {
   useDisclosure,
   Input,
   FormControl,
-  FormLabel,
   FormErrorMessage,
   FormHelperText,
 } from '@chakra-ui/react'
@@ -33,6 +32,12 @@ export default function Index() {
     onClose: onNewGroupClose
   } = useDisclosure()
 
+  const { 
+    isOpen: isAddExpensesOpen, 
+    onOpen: onAddExpensesOpen, 
+    onClose: onAddExpensesClose 
+  } = useDisclosure()
+  
   const [mounted, setMounted] = useState(false)
   const [data, setData] = useState({})
   const [groupName, setGroupName] = useState('')
@@ -40,9 +45,9 @@ export default function Index() {
   const [groupMembers, setGroupMembers] = useState([])
   const [groupNameError, setGroupNameError] = useState(false)
   const [groupMembersError, setGroupMemebersError] = useState(false)
-
-  console.log(groupMembers)
-
+  const [totalAmount, setTotalAmount] = useState(0)
+  
+  
   useEffect(() => {
     setMounted(true)
   })
@@ -188,14 +193,63 @@ export default function Index() {
                 ) : (
                   <Flex mt={2}>
                     No transactions included
+                </Flex>
+            )
+        }
+     </Flex>
+    <Button onClick={onAddExpensesOpen} position={'absolute'} width='80%' maxW='600px' colorScheme='teal' bottom='20px' zIndex={1} >
+        Add Expenses
+    </Button>
+    <Modal isOpen={isAddExpensesOpen} onClose={onAddExpensesClose}  >
+        <ModalOverlay />
+        <ModalContent  >
+          <ModalHeader>Add New Expense</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody maxH={'50vh'} overflow='auto'>
+            <Flex>
+            <Flex alignItems={'center'} fontWeight={'bold'} >Total Amount:</Flex>
+            <Input htmlSize={4} width='auto' ml={2}  />
+            </Flex>
+            <Flex fontWeight={'bold'} >Paid by:</Flex>
+            <Flex flexDir={'column'}>
+              {
+                testGroup.map((member) => (
+                  <Flex key={member} w='100%' m={2} >
+                  
+                  <Flex w='33%' alignItems={'center'} >{member}</Flex>
+                  <Flex alignItems={'center'} w='33%'>
+                  <Input htmlSize={4} width='auto' />%
                   </Flex>
-                )
+                  <Flex w='33%' alignItems={'center'} justifyContent='center' >{member} MATIC</Flex>
+                  </Flex>
+                ))
               }
             </Flex>
-            <Button position={'absolute'} width='80%' maxW='600px' colorScheme='teal' bottom='20px' zIndex={1} >
-              Add Expenses
+            <Flex fontWeight={'bold'}>Split Between:</Flex>
+            <Flex flexDir={'column'}>
+              {
+                testGroup.map((member) => (
+                  <Flex key={member} w='100%' m={2} >
+                  
+                  <Flex w='33%' alignItems={'center'}  >{member}</Flex>
+                  <Flex alignItems={'center'} justifyContent='center' w='33%'>
+                  <Input htmlSize={4} width='auto' />%
+                  </Flex>
+                  <Flex w='33%' alignItems={'center'} justifyContent='center' >{member} MATIC</Flex>
+                  </Flex>
+                ))
+              }
+            </Flex>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={() => null}>
+              Create
             </Button>
-          </Flex>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </Flex>
 
         </Flex>
 
