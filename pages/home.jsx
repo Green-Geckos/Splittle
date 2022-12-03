@@ -51,30 +51,32 @@ export default function Index() {
   const [totalAmount, setTotalAmount] = useState(0)
   const [web3, setWeb3] = useState();
 
-  const address = "0x7FEFe32cC7abDed3b38e08F9406F3ab41A844123";
+  const contractAddress = "0x7FEFe32cC7abDed3b38e08F9406F3ab41A844123";
+  const baseUrl = process.env.NEXT_PUBLIC_INFURA_API_URL;
 
   useEffect(() => {
     loadWeb3()
   }, [])
 
   function loadWeb3() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const network = ethers.providers.getNetwork('mumbai')
+    const provider = new ethers.providers.JsonRpcProvider(baseUrl, network);
     const signer = provider.getSigner();
 
-    // const splittle_contract = new ethers.Contract(
-    //   address,
-    //   abi,
-    //   signer
-    // )
+    const splittle_contract = new ethers.Contract(
+      contractAddress,
+      abi,
+      signer
+    )
 
-    // const connection = splittle_contract.connect(signer)
-    // setWeb3({
-    //   ...web3,
-    //   provider: provider,
-    //   signer: signer,
-    //   contract: splittle_contract,
-    //   connection: connection
-    // })
+    const connection = splittle_contract.connect(signer)
+    setWeb3({
+      ...web3,
+      provider: provider,
+      signer: signer,
+      contract: splittle_contract,
+      connection: connection
+    })
   }
 
   useEffect(() => {
@@ -165,7 +167,7 @@ export default function Index() {
 
                     </FormControl>
                     <Flex flexDirection='column'>
-                      <Flex mt={2}  >Added Memebers:</Flex>
+                      <Flex mt={2}  >Added Members:</Flex>
                       <List>
                         {groupMembers.map((address) => (
                           <ListItem key={address}>{address}</ListItem>

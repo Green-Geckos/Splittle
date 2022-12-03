@@ -53,7 +53,8 @@ export default function Index() {
 
   async function loadProvider() {
     if (window.ethereum) {
-      const providerInstance = new ethers.providers.Web3Provider(window.ethereum);
+      var baseUrl = process.env.NEXT_PUBLIC_INFURA_API_URL;
+      const providerInstance = new ethers.providers.JsonRpcProvider(baseUrl);
 
       await providerInstance.send('eth_requestAccounts', []);
       setProvider(() => providerInstance)
