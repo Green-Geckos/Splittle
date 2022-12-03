@@ -15,7 +15,4 @@ export class Group{
     addMember(data, address){
         data.groups.members.push(address);
     }
-    addExpense(data, expenseId){
-        data.groups.expensesIds.push(expenseId);
-    }
 }

@@ -16,19 +16,20 @@ function createGroupHandler(createdBy, groupName, members){
     group.addGroup(data);
     putJSONData(data);
 }
-function settleHandler(from, to, amount){
-    
-}
 function addExpenseHandler(paidBy, groupId, paymentDetails){
     //expenseId
-    const expense = new Expense(expenseId, paidBy, groupId, paymentDetails);
+    const expense = new Expense(expenseId, amountPaid, groupId, paidBy, splitDetails);
     const data = getJSONData();
     expense.addExpense(data);
     putJSONData(data);
 }
 function addUserHandler(){
-    const user = new User(address, name);
+    const user = new User(address, userName);
     const data = getJSONData();
     user.addUser(data);
     putJSONData(data);
+}
+function settleHandler(from, to, amount){
+    const data = getJSONData();
+    
 }

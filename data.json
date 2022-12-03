@@ -2,21 +2,36 @@
     "userDetails":[
         {
             "address" : "0x00", 
-            "name" : "foo"
+            "userName" : "foo",
+            "balance" : -12
         }, 
         {
             "address" : "0x01", 
-            "name" : "bar"
+            "userName" : "bar",
+            "balance" : 26
         }, 
         {
             "address" : "0x02", 
-            "name" : "baz"
+            "userName" : "baz",
+            "balance" : -14
         }
     ], 
     "groups":[
         {
             "groupId" : 0, 
             "createdBy" : 1,
+            "groupName" : "delta",
+            "members":[
+                0,
+                2
+            ], 
+            "expensesIds":[
+                0
+            ]
+        },
+        {
+            "groupId" : 1, 
+            "createdBy" : 2,
             "groupName" : "delta",
             "members":[
                 0, 
@@ -28,21 +43,22 @@
         }
     ], 
     "expenses" :[
-            {
+        {
             "expenseId" : 0,
+            "amountPaid" : 69,
+            "groupId" : 0,
             "paidBy" : {
                 "0x" : 40, 
                 "1x" : 60
-            }, 
-            "groupId" : 0,
-            "paymentDetails" :{
-                "AmountPaid" : 69, 
-                "splitDetails" : {
-                    "0x" : 30, 
-                    "1x" : 30, 
-                    "2x" : 40
-                }
+            },      
+            "splitDetails" : {
+                "0x" : 30, 
+                "1x" : 30, 
+                "2x" : 40
             }
+        },
+        {
+
         }
     ]
 }

@@ -1,7 +1,8 @@
 export class User{
-    constructor(address, name){
+    constructor(address, userName){
         this.address = address;
-        this.name = name;
+        this.name = userName;
+        this.balance = 0;
     }
     addUser(data){
         data.userDetails.push(this);
