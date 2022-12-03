@@ -23,7 +23,10 @@ import {
 import { AddIcon } from '@chakra-ui/icons'
 
 import '@fontsource/poppins/700.css'
-import Name from '../components/ENS/Name'
+import Name from '../components/ENS/Name';
+
+import { ethers } from 'ethers';
+import abi from "../abi/contracts-abi.json";
 
 export default function Index() {
   const {
@@ -46,7 +49,33 @@ export default function Index() {
   const [groupNameError, setGroupNameError] = useState(false)
   const [groupMembersError, setGroupMemebersError] = useState(false)
   const [totalAmount, setTotalAmount] = useState(0)
+  const [web3, setWeb3] = useState();
 
+  const address = "0x7FEFe32cC7abDed3b38e08F9406F3ab41A844123";
+
+  useEffect(() => {
+    loadWeb3()
+  }, [])
+
+  function loadWeb3() {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+
+    // const splittle_contract = new ethers.Contract(
+    //   address,
+    //   abi,
+    //   signer
+    // )
+
+    // const connection = splittle_contract.connect(signer)
+    // setWeb3({
+    //   ...web3,
+    //   provider: provider,
+    //   signer: signer,
+    //   contract: splittle_contract,
+    //   connection: connection
+    // })
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -138,9 +167,9 @@ export default function Index() {
                     <Flex flexDirection='column'>
                       <Flex mt={2}  >Added Memebers:</Flex>
                       <List>
-                        { groupMembers.map((address) => (
-                            <ListItem key={address}>{address}</ListItem>
-                          ))}
+                        {groupMembers.map((address) => (
+                          <ListItem key={address}>{address}</ListItem>
+                        ))}
                       </List>
 
                     </Flex>
@@ -168,10 +197,10 @@ export default function Index() {
                     <ListItem _hover={{
                       background: 'black',
                       color: 'white'
-                    }} 
-                      borderRadius='8px' 
-                      p={1} 
-                      cursor={'pointer'} 
+                    }}
+                      borderRadius='8px'
+                      p={1}
+                      cursor={'pointer'}
                       onClick={() => console.log('hello')} >
                       {groupName}
                     </ListItem>
