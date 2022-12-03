@@ -9,6 +9,10 @@ export function getJSONData() {
     return parsedData;
 }
 
+export function getLatestfileCID() {
+    return fileCID;
+}
+
 export function putJSONData(data){
     const stringifiedData = JSON.stringify(data, undefined, 2);
     fs.writeFileSync(dataLocation, stringifiedData);

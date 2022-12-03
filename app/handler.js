@@ -23,8 +23,15 @@ export function addExpenseHandler(paidBy, groupId, splitDetails, amountPaid, exp
 }
 
 export function addUserHandler(userAddress, username, ens){
-    const user = new User(userAddress, username, ens);
     const data = getJSONData();
+
+    // if user already exists
+    if(data.userDetails.find(user => user.userAddress === userAddress)){
+        return {
+            message: "User already exists",
+        }
+    }
+    const user = new User(userAddress, username, ens);
     user.addUser(data);
     putJSONData(data);
 }
