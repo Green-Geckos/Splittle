@@ -12,11 +12,17 @@
     "@chakra-ui/react": "^2.4.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@fontsource/poppins": "^4.5.10",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.6",
     "framer-motion": "^6",
     "next": "13.0.6",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
-  }
+    "react-dom": "18.2.0",
+    "web3.storage": "^4.4.0"
+  },
+  "devDependencies": {
+    "hardhat": "^2.12.3"
+  },
+  "type": "module"
 }
