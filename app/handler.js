@@ -9,5 +9,15 @@ import {Expense} from './objects/Expense';
  * @param {address[]} members  -> list of user address in the group
  */
 function createGroupHandler(createdBy, groupName, members){
-    const group = new Group();
+    //groupId
+
+    const group = new Group(groupId, createdBy, groupName, members);
+    
+}
+function settleHandler(from, to, amount){
+    
+}
+function addExpenseHandler(paidBy, groupId, paymentDetails){
+    //expenseId
+    const expense = new Expense(expenseId, paidBy, groupId, paymentDetails);
 }

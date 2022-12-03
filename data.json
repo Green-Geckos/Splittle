@@ -17,6 +17,7 @@
         {
             "groupId" : 0, 
             "createdBy" : 1,
+            "groupName" : "delta",
             "members":[
                 0, 
                 2

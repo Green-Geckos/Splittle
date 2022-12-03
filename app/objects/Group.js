@@ -1,8 +1,9 @@
 export class Group{
-    constructor(groupId, createdBy){
+    constructor(groupId, createdBy, groupName, members){
         this.groupId = groupId;
         this.createdBy = createdBy;
-        this.members = [];
+        this.members = members;
+        this.groupName = groupName;
         this.expensesIds = [];
     }
     deleteGroup(data){
