@@ -24,7 +24,7 @@ import {
 import { AddIcon } from '@chakra-ui/icons'
 
 import '@fontsource/poppins/700.css'
-import DisplayName from '../components/ENS/DisplayName'
+import Name from '../components/ENS/Name'
 
 export default function Index() {
   const {
@@ -94,10 +94,16 @@ export default function Index() {
             <Flex h='100%' alignItems={'center'} float={'right'} mr={4} >
 
 
-              <Button mr={4} onClick={onNewGroupOpen} leftIcon={<AddIcon />} colorScheme='teal' variant='solid' size={'sm'} >
+              <Button 
+                mr={4} 
+                onClick={onNewGroupOpen} 
+                leftIcon={<AddIcon />} 
+                colorScheme='teal' 
+                variant='solid' 
+                size={'sm'} >
                 New Group
               </Button>
-              <DisplayName ensName="0x8791653aa21c1D9b55ADdadf92bEb7c60E42d72C"/>
+              <Name ensName="0x8791653aa21c1D9b55ADdadf92bEb7c60E42d72C"/>
               <Modal isOpen={isNewGroupOpen} onClose={onNewGroupClose}>
                 <ModalOverlay />
                 <ModalContent>
