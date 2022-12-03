@@ -49,10 +49,9 @@ export default function Index() {
     }
   }
 
-  async function getIPFSHistory(signer){
+  async function getIPFSHash(signer){
     const Ipfs_sc_addr = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
     // console.log(abi);
-    console.log({in_function: signer})
     const contract = new ethers.Contract(Ipfs_sc_addr, abi, signer)
     // console.log(`contract is`,contract);
     // const connection = contract.connect(signer)
@@ -85,7 +84,7 @@ export default function Index() {
       // console.log({signer})
       setSigner(() => signerInstance);
 
-      getIPFSHistory(signerInstance)
+      getIPFSHash(signerInstance)
     }
     else {
       console.log('Please make sure that you have metamask installed')
