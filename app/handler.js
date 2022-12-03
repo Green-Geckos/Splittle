@@ -56,7 +56,6 @@ export function groupRepresentationData(groupId, userAddress){
     const group =  data.groups[groupIndex];
     returnData.groupId = groupId;
     returnData.groupName = group.groupName;
-    returnData.user = userAddress;
 
     returnData.members = group.members;
 
@@ -78,12 +77,9 @@ export function groupRepresentationData(groupId, userAddress){
                 // Amount should take from this user 
                 let amountTake = contribution*exp.splitDetails[mem]/100;
 
-                // Member contribution
                 let memContribution = exp.paidBy[mem]*exp.amountPaid/100;
 
                 if(!memContribution) memContribution = 0;
-
-                // Amount this member will take from user
 
                 let amountGive = memContribution*exp.splitDetails[userAddress]/100;
 
@@ -105,15 +101,9 @@ export function groupRepresentationData(groupId, userAddress){
 export function landingPageHandler(userAddress) {
     const data = getJSONData();
     const returnData = {};
-    returnData.groups = [];
-    const groups = data.groups.forEach(gp => {
-        const ret = {};
-        ret[gp.groupId] = gp.groupName;
-        returnData.groups.push(ret);
+    data.groups.forEach(gp => {
+        returnData[gp.groupId] = groupRepresentationData(gp.groupId, userAddress);
     });
-    returnData.firstGroupRep = {};
-    if(data.groups.length >= 1){
-        returnData.firstGroupRep = groupRepresentationData(data.groups[0].groupId, userAddress);
-    }
+    returnData.user = data.users.find((ele) => ele.userAddress === userAddress);
     return returnData;
 }

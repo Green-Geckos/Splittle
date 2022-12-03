@@ -1,13 +1,11 @@
 {
-    "groups" :{
-        "groupId1" : "groupName1", 
-        "groupId2" : "groupName2", 
-        "groupId3" : "groupName3"
+    "user" : {
+        "username" : "ram", 
+        "userAddress" : "0x00", 
+        "ens" : "ram.eth"
     },
-    "firstGroupRep": {
-        "groupId" : "groupId1", 
+    "groupId1": {
         "groupName" : "groupName1",
-        "user" : "0x00",
         "userBalancesData" : {
             "0x02" : 230,
             "0x032" : -50
