@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import { 
-  Flex, 
-  Button, 
-  List, 
+import {
+  Flex,
+  Button,
+  List,
   Avatar,
-   Divider,
-     ListItem,
-     Modal,
+  Divider,
+  ListItem,
+  Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
@@ -19,19 +19,20 @@ import {
   FormLabel,
   FormErrorMessage,
   FormHelperText,
-    } from '@chakra-ui/react'
+} from '@chakra-ui/react'
 
 import { AddIcon } from '@chakra-ui/icons'
 
 import '@fontsource/poppins/700.css'
+import DisplayName from '../components/ENS/DisplayName'
 
 export default function Index() {
-  const { 
-    isOpen: isNewGroupOpen, 
-    onOpen: onNewGroupOpen, 
-    onClose: onNewGroupClose 
+  const {
+    isOpen: isNewGroupOpen,
+    onOpen: onNewGroupOpen,
+    onClose: onNewGroupClose
   } = useDisclosure()
-  
+
   const [mounted, setMounted] = useState(false)
   const [data, setData] = useState({})
   const [groupName, setGroupName] = useState('')
@@ -39,13 +40,13 @@ export default function Index() {
   const [groupMembers, setGroupMembers] = useState([])
   const [groupNameError, setGroupNameError] = useState(false)
   const [groupMembersError, setGroupMemebersError] = useState(false)
-  
+
   console.log(groupMembers)
-  
+
   useEffect(() => {
     setMounted(true)
   })
-  
+
   const handleGroupName = (event) => {
     setGroupName(event.target.value)
     if (groupName.length > 0) {
@@ -69,7 +70,7 @@ export default function Index() {
     if (groupName.length == 0 && groupMembers.length == 0) {
       setGroupNameError(true)
       setGroupMemebersError(true)
-    }else if (groupName.length == 0 && groupMembers.length !== 0) {
+    } else if (groupName.length == 0 && groupMembers.length !== 0) {
 
       setGroupNameError(true)
     } else if (groupName.length !== 0 && groupMembers.length == 0) {
@@ -87,125 +88,122 @@ export default function Index() {
   if (mounted) {
     return (
       <>
-<Flex flexDirection={'column'} fontFamily={'poppins.700'} h='100vh' w='100vw'>
-  <Flex w='100%' h={'80px'} bg='brand.purple' >
-    <Flex w='100%' float={'left'} />
-    <Flex h='100%' alignItems={'center'} float={'right'} mr={4} >
-    
-
-  <Button mr={4} onClick={onNewGroupOpen} leftIcon={<AddIcon />} colorScheme='teal' variant='solid' size={'sm'} >
-    New Group
-  </Button>
-  <Modal isOpen={isNewGroupOpen} onClose={onNewGroupClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Create New Group</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-          <FormControl isInvalid={groupNameError}>
-      <Input placeholder='Enter a group name' variant={'flushed'} type='text' value={groupName} onChange={handleGroupName} />
-      {!groupNameError ? 
-        null
-       : (
-        <FormErrorMessage>Group name is required.</FormErrorMessage>
-      )}
+        <Flex flexDirection={'column'} fontFamily={'poppins.700'} h='100vh' w='100vw'>
+          <Flex w='100%' h={'80px'} bg='brand.purple' >
+            <Flex w='100%' float={'left'} />
+            <Flex h='100%' alignItems={'center'} float={'right'} mr={4} >
 
 
-    </FormControl>
-    <FormControl mt={4} isInvalid={groupMembersError}>
-      <Input placeholder='Add group members'  type='text' value={groupMemberAddress} onChange={handleGroupMembers} />
-      <Button onClick={handleAddGroupMember} mt={1} size='md' >Add</Button>
-      {!groupMembersError ? 
-        null
-       : (
-        <FormErrorMessage>Add group members.</FormErrorMessage>
-      )}
+              <Button mr={4} onClick={onNewGroupOpen} leftIcon={<AddIcon />} colorScheme='teal' variant='solid' size={'sm'} >
+                New Group
+              </Button>
+              <DisplayName ensName="0x8791653aa21c1D9b55ADdadf92bEb7c60E42d72C"/>
+              <Modal isOpen={isNewGroupOpen} onClose={onNewGroupClose}>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Create New Group</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <FormControl isInvalid={groupNameError}>
+                      <Input placeholder='Enter a group name' variant={'flushed'} type='text' value={groupName} onChange={handleGroupName} />
+                      {!groupNameError ?
+                        null
+                        : (
+                          <FormErrorMessage>Group name is required.</FormErrorMessage>
+                        )}
+
+
+                    </FormControl>
+                    <FormControl mt={4} isInvalid={groupMembersError}>
+                      <Input placeholder='Add group members' type='text' value={groupMemberAddress} onChange={handleGroupMembers} />
+                      <Button onClick={handleAddGroupMember} mt={1} size='md' >Add</Button>
+                      {!groupMembersError ?
+                        null
+                        : (
+                          <FormErrorMessage>Add group members.</FormErrorMessage>
+                        )}
 
 
 
-    </FormControl>
-    <Flex flexDirection='column'>
-      <Flex mt={2}  >Added Memebers:</Flex>
-      <List>
-        {
-          groupMembers.map((address) => (
-            <ListItem key={address}>{address}</ListItem>
-          ))
+                    </FormControl>
+                    <Flex flexDirection='column'>
+                      <Flex mt={2}  >Added Memebers:</Flex>
+                      <List>
+                        {
+                          groupMembers.map((address) => (
+                            <ListItem key={address}>{address}</ListItem>
+                          ))
 
-        }
-      </List>
+                        }
+                      </List>
 
-    </Flex>
-          </ModalBody>
+                    </Flex>
+                  </ModalBody>
 
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={handleCreateGroup}>
-              Create
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+                  <ModalFooter>
+                    <Button colorScheme='blue' mr={3} onClick={handleCreateGroup}>
+                      Create
+                    </Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
 
-    <Flex alignItems='center' h='100%'>
-  <Avatar src='https://bit.ly/broken-link' /> 
+              <Flex alignItems='center' h='100%'>
+                <Avatar src='https://bit.ly/broken-link' />
 
-    </Flex>
+              </Flex>
 
-    </Flex>
-  </Flex>
-    <Flex  justifyContent={'center'} bg='gray.200' alignItems='center' h='100%' w='100vw' >
-      <Flex overflow={'auto'} h='95%' w='30%' maxW={'300px'} bg='white' m={2} borderRadius='15px' >
-        <List spacing={3} p={1} mt={2} w='100%' >
-        {testGroup.map((groupName) => (
-          <>
-          <ListItem _hover={{
-            background: 'black',
-            color: 'white'
-          }} borderRadius='8px' p={1} cursor={'pointer'} onClick={() => console.log('hello')} >
-            {groupName}
-          </ListItem>
-          <Divider />
-          </>
+            </Flex>
+          </Flex>
+          <Flex justifyContent={'center'} bg='gray.200' alignItems='center' h='100%' w='100vw' >
+            <Flex overflow={'auto'} h='95%' w='30%' maxW={'300px'} bg='white' m={2} borderRadius='15px' >
+              <List spacing={3} p={1} mt={2} w='100%' >
+                {testGroup.map((groupName) => (
+                  <>
+                    <ListItem _hover={{
+                      background: 'black',
+                      color: 'white'
+                    }} borderRadius='8px' p={1} cursor={'pointer'} onClick={() => console.log('hello')} >
+                      {groupName}
+                    </ListItem>
+                    <Divider />
+                  </>
 
-        ))}
+                ))}
 
-        </List>
-      </Flex>
-     <Flex p={2} overflow={'auto'} w='100%' h='95%' m={2} bg='white' borderRadius={'15px'} >
-        {
-            Object.keys(data) ? (
-                <Flex mt={2} >
+              </List>
+            </Flex>
+            <Flex p={2} overflow={'auto'} w='100%' h='95%' m={2} bg='white' borderRadius={'15px'} >
+              {
+                Object.keys(data) ? (
+                  <Flex mt={2} >
                     List of transactions
-                </Flex>
-            ) : (
-                <Flex mt={2}>
+                  </Flex>
+                ) : (
+                  <Flex mt={2}>
                     No transactions included
-                </Flex>
-            )
-        }
-     </Flex>
-    <Button position={'absolute'} width='80%' maxW='600px' colorScheme='teal' bottom='20px' zIndex={1} >
-        Add Expenses
-    </Button>
-    </Flex>
+                  </Flex>
+                )
+              }
+            </Flex>
+            <Button position={'absolute'} width='80%' maxW='600px' colorScheme='teal' bottom='20px' zIndex={1} >
+              Add Expenses
+            </Button>
+          </Flex>
 
-</Flex>
+        </Flex>
 
-</> 
+      </>
 
     )
   }
-  
-  return  (
+
+  return (
     <>
-    <div>
-    Loading
-
-
-    </div>
-
-    
+      <Flex>
+        Loading
+      </Flex>
     </>
   )
-  
+
 }

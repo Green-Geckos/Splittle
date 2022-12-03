@@ -1,7 +1,14 @@
-import { ChakraProvider } from '@chakra-ui/react'
-import { extendTheme } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react';
+import { WagmiConfig, createClient } from 'wagmi';
+import { ethers, getDefaultProvider } from 'ethers';
 
 import "@fontsource/poppins"
+
+const client = createClient({
+  autoConnect: true,
+  provider: new ethers.providers.InfuraProvider(),
+})
 
 
 const theme = extendTheme({
@@ -21,9 +28,11 @@ const theme = extendTheme({
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <WagmiConfig client={client}>
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </WagmiConfig>
   )
 
 }
