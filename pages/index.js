@@ -4,13 +4,16 @@ import { Box, Flex, Button, Input, Text, FormControl, FormLabel, FormHelperText,
 
 import { ethers } from 'ethers'
 import { useForm } from 'react-hook-form';
-import EthersNotFound from '../components/AlertBoxes/EthersNotFound'
+import EthersNotFound from '../components/AlertBoxes/EthersNotFound';
+
+import {printAddress} from '../app/test';
 
 import '@fontsource/poppins/700.css'
 
 export default function Index() {
   const [name, setName] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [provider, setProvider] = useState();
   const [signer, setSigner] = useState();
   const {
     handleSubmit,
@@ -26,11 +29,15 @@ export default function Index() {
   }
 
   const handleChange = (event) => setName(event.target.value)
-  const handleConnectWallet = (event) => {
+  const handleConnectWallet = async (event) => {
     event.preventDefault()
     console.log(event)
-    connectWallet()
-    // router.push('/home')
+    const connected  = await connectWallet()
+    if (connected) {
+      const address = await signer.getAddress();
+      localStorage.setItem("ACCOUNT_ADDRESS", address);
+      router.push('/home')
+    }
   }
 
   useEffect(() => {
@@ -39,11 +46,12 @@ export default function Index() {
 
   async function loadProvider() {
     if (window.ethereum) {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const providerInstance = new ethers.providers.Web3Provider(window.ethereum);
 
-      await provider.send('eth_requestAccounts', []);
+      await providerInstance.send('eth_requestAccounts', []);
+      setProvider(() => providerInstance)
 
-      const signerInstance = provider.getSigner();
+      const signerInstance = providerInstance.getSigner();
       setSigner(() => signerInstance);
     }
     else {
@@ -56,6 +64,7 @@ export default function Index() {
     try {
       const sign_result = await signer.signMessage("Sign message to confirm");
       console.log(sign_result);
+      return true;
     }
     catch {
       console.log('Signing message failed');
@@ -69,15 +78,15 @@ export default function Index() {
         <Box w='100%' h='80px' maxH={'60px'} bg='brand.purple' >
 
         </Box>
-        <form onSubmit={handleSubmit(() => {})}>
-          <Flex justifyContent={'center'} flexDir='column' alignItems='center' h='100%' w='100%' >
+        <Flex justifyContent={'center'} flexDir='column' alignItems='center' h='100%' w='100%' >
+          <form onSubmit={handleSubmit(() => { })}>
             <Flex flexDir={'column'} alignItems='center' w='80%' h='30vh' maxW='350px' >
               <FormControl isInvalid={errors.name}>
                 <Flex flexDir={'column'} w='100%'>
                   <FormLabel htmlFor='name' mb='8px'>Name:</FormLabel>
                   <Input
                     id='name'
-                    placeholder= 'Your name'
+                    placeholder='Your name'
                     {...register('name', {
                       required: 'This is required',
                       minLength: { value: 4, message: 'Minimum length should be 4' },
@@ -103,11 +112,8 @@ export default function Index() {
                 Connect Wallet
               </Button>
             </Flex>
-
-          </Flex>
-
-        </form>
-
+          </form>
+        </Flex>
       </Flex>
     </>
   )
