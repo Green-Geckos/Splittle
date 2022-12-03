@@ -1,8 +1,9 @@
-class User{
-    User(userId, address, name){
-        this.userId = userId;
+export class User{
+    constructor(address, userName){
         this.address = address;
-        this.name = name;
+        this.name = userName;
+        this.balance = 0;
+        this.groups = [];
     }
     addUser(data){
         data.userDetails.push(this);
