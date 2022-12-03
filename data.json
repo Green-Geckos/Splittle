@@ -2,10 +2,11 @@
   "userDetails": [
     {
       "address": "0x482fB4cC32DEd74645Cb79D9589a03a0Acc563d3",
-      "name": "Shaleen Bansal",
+      "name": "Ayush Jalan",
       "balance": 0
     }
   ],
   "groups": [],
-  "expenses": []
+  "expenses": [],
+  "fileCID": "bafybeicoy5ldfvp3l7torenuayj6zf52n77k5trzz6adarzsbtdxedyet4"
 }

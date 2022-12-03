@@ -8,15 +8,15 @@ import {getJSONData, putJSONData} from './fileServer.js';
  * @param {string} groupName -> group Name given by user
  * @param {address[]} members  -> list of user address in the group
  */
-export async function createGroupHandler(createdBy, groupName, members){
-    const data = await getJSONData();
+export async function createGroupHandler(createdBy, groupName, members, fileCID){
+    const data = await getJSONData(fileCID);
     const group = new Group(data.groups.length,  createdBy, groupName, members);
     group.addGroup(data);
     await putJSONData(data);
 }
 
-export async function addExpenseHandler(paidBy, groupId, splitDetails, amountPaid, expenseTitle){
-    const data = await getJSONData();
+export async function addExpenseHandler(paidBy, groupId, splitDetails, amountPaid, expenseTitle, fileCID){
+    const data = await getJSONData(fileCID);
     const expense = new Expense(data.expenses.length, expenseTitle, amountPaid, groupId, paidBy, splitDetails);
     expense.addExpense(data);
     await putJSONData(data);
@@ -36,8 +36,8 @@ export async function addUserHandler(userAddress, username, ens, fileCID){
     await putJSONData(data);
 }
 
-export async function settleHandler(from, to, amount, groupId){
-    const data = await getJSONData();
+export async function settleHandler(from, to, amount, groupId, fileCID){
+    const data = await getJSONData(fileCID);
     let paidBy = {};
     paidBy[from] = 100;
     let paidTo = {};
@@ -50,9 +50,9 @@ export async function settleHandler(from, to, amount, groupId){
 
 
 
-export async function groupRepresentationData(groupId, userAddress){
+export async function groupRepresentationData(groupId, userAddress, fileCID){
     // Return JSON Metadata
-    const data = await getJSONData();
+    const data = await getJSONData(fileCID);
     const returnData = {};
     const groupIndex = data.groups.findIndex((ele) => {
         return ele.groupId === groupId;
@@ -103,12 +103,12 @@ export async function groupRepresentationData(groupId, userAddress){
     return returnData;
 }
 
-export async function landingPageHandler(userAddress) {
-    const data = await getJSONData();
+export async function landingPageHandler(userAddress, fileCID) {
+    const data = await getJSONData(fileCID);
     const returnData = {};
     returnData.groups = {}
     data.groups.forEach(async gp => {
-        returnData.groups[gp.groupId] = await groupRepresentationData(gp.groupId, userAddress);
+        returnData.groups[gp.groupId] = await groupRepresentationData(gp.groupId, userAddress, fileCID);
     });
     returnData.user = data.userDetails.find((ele) => ele.userAddress === userAddress);
     return returnData;
