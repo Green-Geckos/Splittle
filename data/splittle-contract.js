@@ -3,14 +3,14 @@
 import { ethers } from "ethers";
 import abi from "../abi/contracts-abi.json";
 
-const address = process.env.CONTRACT_ADDRESS;
+const address = "0x7FEFe32cC7abDed3b38e08F9406F3ab41A844123";
 
 
 const provider = ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 const splittle_contract = new ethers.Contract(
-    address= address,
-    abi=abi,
+    addressOrName= address,
+    contractInterface=abi,
     signerOrProvider=signer
 )
 

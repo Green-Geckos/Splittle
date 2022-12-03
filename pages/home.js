@@ -20,8 +20,10 @@ import {
     } from '@chakra-ui/react'
 
 import { AddIcon } from '@chakra-ui/icons'
-
+import axios from 'axios';
 import '@fontsource/poppins/700.css'
+
+// import * as PushAPI from "@pushprotocol/restapi";
 
 export default function Index() {
   const { 
@@ -44,9 +46,14 @@ export default function Index() {
   const [groupNameError, setGroupNameError] = useState(false)
   const [groupMembersError, setGroupMemebersError] = useState(false)
   const [totalAmount, setTotalAmount] = useState(0)
-  
+  const [fileCID, setFileCID] = useState("bafybeifneutplhq3t7wdkeh2ckw7arb5vwdpd4bj3tk2axsszd2km2qngu");
+  const [userAddress, setUserAddress] = useState("");
   
   useEffect(() => {
+    const userAddress = localStorage.getItem("ACCOUNT_ADDRESS")
+    if(userAddress){
+      setUserAddress(userAddress);
+    }
     setMounted(true)
   })
   
@@ -82,9 +89,14 @@ export default function Index() {
     } else {
       await axios.post('/api/createGroupHandler', {
         groupName: groupName,
-        groupMembers: groupMembers,
-        members: groupMembers
+        userAddress: userAddress,
+        members: groupMembers, 
+        fileCID :fileCID
       });
+      const res = await axios.get(
+        '/api/getLatestfileCID',
+      );
+      setFileCID(res.data.fileCID)
       setGroupMemberAddress('')
       setGroupName('')
       onNewGroupClose()

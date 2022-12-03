@@ -2,11 +2,22 @@
   "userDetails": [
     {
       "address": "0x482fB4cC32DEd74645Cb79D9589a03a0Acc563d3",
-      "name": "Ayush Jalan",
+      "name": "Rohit Ranjan",
       "balance": 0
     }
   ],
-  "groups": [],
+  "groups": [
+    {
+      "groupId": 0,
+      "createdBy": "0x482fB4cC32DEd74645Cb79D9589a03a0Acc563d3",
+      "members": [
+        "0x0",
+        "0x482fB4cC32DEd74645Cb79D9589a03a0Acc563d3"
+      ],
+      "groupName": "group1",
+      "expensesIds": []
+    }
+  ],
   "expenses": [],
-  "fileCID": "bafybeicoy5ldfvp3l7torenuayj6zf52n77k5trzz6adarzsbtdxedyet4"
+  "fileCID": "bafybeiep2ak2i6mk2cu6wxg7zzqpadzqi7y7asocam73bl7ryg5oern6rm"
 }
