@@ -6,6 +6,9 @@ export class Group{
         this.groupName = groupName;
         this.expensesIds = [];
     }
+    addGroup(data){
+        data.groups.push(this);
+    }
     deleteGroup(data){
         //Will do later
     }
