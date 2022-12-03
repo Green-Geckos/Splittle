@@ -14,6 +14,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@fontsource/poppins": "^4.5.1",
+    "@pushprotocol/restapi": "^0.2.2",
     "axios": "^1.2.0",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.6",

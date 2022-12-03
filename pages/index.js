@@ -8,12 +8,19 @@ import axios from 'axios';
 import EthersNotFound from '../components/AlertBoxes/EthersNotFound';
 
 import '@fontsource/poppins/700.css'
+// import { getStorageIdentifier, setStorageIdentifier } from '../data/splittle-contract';
 
 export default function Index() {
   const [name, setName] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [provider, setProvider] = useState();
   const [signer, setSigner] = useState();
+  const [fileCID, setFileCID] = useState("bafybeiaiepjlf47zjqrlpiemalf2uekxq7366wxmelsxwdjulm7ny3n2m4");
+
+  useEffect(() => {
+    loadProvider()
+  }, [])
+
   const {
     handleSubmit,
     register,
@@ -35,17 +42,22 @@ export default function Index() {
     if (connected) {
       const address = await signer.getAddress();
       localStorage.setItem("ACCOUNT_ADDRESS", address);
-      axios.post('/api/addUserHandler', {
+      await axios.post('/api/addUserHandler', {
         username: name,
-        userAddress: address
-      })
+        userAddress: address, 
+        fileCID :fileCID
+      });
+      const res = await axios.get(
+        '/api/getLatestfileCID',
+      );
+      res ? setFileCID(res.data.fileCID) : setFileCID("test");
+      console.log("fileCID: ", res, res.data.fileCID);
+      // await setStorageIdentifier(res.data.fileCID);
       router.push('/home');
     }
   }
 
-  useEffect(() => {
-    loadProvider()
-  }, [])
+  
 
   async function loadProvider() {
     if (window.ethereum) {

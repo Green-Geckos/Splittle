@@ -1,7 +1,7 @@
 import { createGroupHandler } from "../../app/handler";
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     const reqBody = req.body;
-    const responseJSON = createGroupHandler(reqBody.groupName, reqBody.userAddress);
+    const responseJSON = await createGroupHandler(reqBody.userAddress, reqBody.groupName, reqBody.members, reqBody.fileCID);
     res.status(200).json(responseJSON);
 }

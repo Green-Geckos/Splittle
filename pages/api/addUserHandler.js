@@ -1,7 +1,7 @@
 import { addUserHandler } from "../../app/handler";
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     const reqBody = req.body; 
-    const responseJSON = addUserHandler(reqBody.userAddress, reqBody.username, reqBody.ens);
+    await addUserHandler(reqBody.userAddress, reqBody.username, reqBody.ens, reqBody.fileCID);
     res.status(200).json();
 }

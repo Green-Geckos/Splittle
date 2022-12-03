@@ -1,21 +1,23 @@
 import fs from 'fs';
 const dataLocation = 'data.json';
 
-let fileCID;
-
-export function getJSONData() {
-    const data = fs.readFileSync(dataLocation, 'utf8');
-    const parsedData = JSON.parse(data);
-    return parsedData;
+export async function getJSONData(fileCID) {
+    const res = await getDataFromWeb3Storage(fileCID);
+    return res.json();
 }
 
 export function getLatestfileCID() {
-    return fileCID;
+    const data = fs.readFileSync(dataLocation, 'utf8');
+    const parsedData = JSON.parse(data);
+    return parsedData.fileCID;
 }
 
-export function putJSONData(data){
+export async function putJSONData(data){
     const stringifiedData = JSON.stringify(data, undefined, 2);
     fs.writeFileSync(dataLocation, stringifiedData);
+    const cid = await putDataOnWeb3Storage();
+    data.fileCID = cid;
+    fs.writeFileSync(dataLocation, JSON.stringify(data, undefined, 2));
 }
 
 // Web3 Storage APIs
@@ -30,11 +32,10 @@ const client = new Web3Storage({ token: apiToken });
 export async function putDataOnWeb3Storage() {
     const dataFiles = await getFilesFromPath(dataLocation);
     const cid = await client.put(dataFiles);
-    fileCID = cid;
-    return fileCID;
+    return cid;
 }
 
-export async function getDataFromWeb3Storage() {
+export async function getDataFromWeb3Storage(fileCID) {
     return fetch(`https://${fileCID}.ipfs.w3s.link/data.json`);
 }
 
