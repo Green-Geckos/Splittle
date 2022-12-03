@@ -1,15 +1,23 @@
 import { ethers } from "ethers";
+import fs from 'fs';
 
 // remind
-function call_remind_function(conn, address, amount){
+function callRemindFunction(conn, address, amount){
     // TODO
     conn.remind(address, amount);
 }
 
 // set storage identifier
-function set_storage_identifier(conn, ipfs_hash){
+function setStorageIdentifier(conn, ipfs_hash){
     // TODO
     conn.setStorageIdentifier(ipfs_hash);
+}
+
+//get identifier
+async function getStorageIdentifier(){
+    const abiJSON = JSON.parse(fs.readFileSync('../abi/contract.json', 'utf-8'));
+    const identifier = await conn.getStorageIdentifier();
+    return identifier;
 }
 
 // approve
@@ -22,10 +30,4 @@ async function approve(signer, to, value){
         value: value
     });
     return response;
-}
-
-//get identifier
-async function getStorageIdentifier(conn){
-    const identifier = await conn.getStorageIdentifier();
-    return identifier;
 }

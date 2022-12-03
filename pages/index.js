@@ -53,10 +53,14 @@ export default function Index() {
 
   async function loadProvider() {
     if (window.ethereum) {
+      window.ethereum?.enable();
       var baseUrl = process.env.NEXT_PUBLIC_INFURA_API_URL;
-      const providerInstance = new ethers.providers.JsonRpcProvider(baseUrl);
+      const providerInstance = new ethers.providers.Web3Provider(window.ethereum)
 
-      await providerInstance.send('eth_requestAccounts', []);
+      // MetaMask requires requesting permission to connect users accounts
+      await providerInstance.send("eth_requestAccounts", []);
+      
+      // console.log(`provider started for network ${}`)
       setProvider(() => providerInstance)
 
       const signerInstance = providerInstance.getSigner();
