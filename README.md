@@ -34,13 +34,15 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## Link for the deployed smart contract on polygonscan
-https://mumbai.polygonscan.com/tx/0x05f0a33d1bff7107ca669d99d733cd239fded6991fe389a9ea726ce04563486b
+https://mumbai.polygonscan.com/address/0x1ca13eaeb600499ad7cfe57920c4b979ed588763 
 
-We are building Splittle (decentralized splitwise app) . Now you can split your crypto bills in a very easy way. We are targeting the "best use of Polygon ID", and "best public goods" in the prize categories. 
+We are building Splittle (decentralized splitwise app) . Now you can split your crypto bills in a very easy way. We are targeting the "best use of Polygon ID", and "best public goods" in the Polygon prize categories. 
 
 Decentralized splitwise is simple and solves many problems:- 
 - Splittle is decentralized, not any single point of failure. No single party controlling all the data.
 - All the transactions are stored on chain, hence immutable, transparent, secure.
 - Now all the users are authentic, because users are represented as wallets. Now, no one can settle money without paying it. In every expense added, now both parties consents are taken.
+
+We are using Polygon chain as the blockchain network for our project, IPFS for storing the data in a decentralised manner, Push Protocol to give necessary notification to the users, ENS as a user ID
 
 
