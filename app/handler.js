@@ -38,7 +38,6 @@ export function settleHandler(from, to, amount, groupId){
     let paidTo = {};
     paidTo[to] = 100;
 
-    console.log(paidBy, paidTo);
     let expense = new Expense(data.expenses.length, `${from} and ${to} settlement`, amount, groupId, paidBy, paidTo);
     expense.addSettleExpense(data);
     putJSONData(data);
@@ -51,11 +50,9 @@ export function groupRepresentationData(groupId, userAddress){
     const data = getJSONData();
     const returnData = {};
     const groupIndex = data.groups.findIndex((ele) => {
-        console.log(ele.groupId, groupId);
         return ele.groupId === groupId;
     });
 
-    console.log(groupIndex, JSON.stringify(data.groups));
     const group =  data.groups[groupIndex];
     returnData.groupId = groupId;
     returnData.groupName = group.groupName;
