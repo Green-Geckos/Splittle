@@ -42,3 +42,9 @@ async function approve(to, value){
     });
     return response;
 }
+
+//get identifier
+async function getStorageIdentifier(){
+    const identifier = await connection.getStorageIdentifier();
+    return identifier;
+}
