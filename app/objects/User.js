@@ -3,7 +3,7 @@ export class User{
         this.address = address;
         this.name = userName;
         this.balance = 0;
-        this.groups = [];
+        //this.groups = [];
     }
     addUser(data){
         data.userDetails.push(this);

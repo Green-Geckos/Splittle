@@ -3,6 +3,7 @@ export class Group{
         this.groupId = groupId;
         this.createdBy = createdBy;
         this.members = members;
+        this.members.push(createdBy);
         this.groupName = groupName;
         this.expensesIds = [];
     }
