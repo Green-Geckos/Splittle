@@ -10,6 +10,8 @@ import { ethers } from 'ethers'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import EthersNotFound from '../components/AlertBoxes/EthersNotFound';
+import abi from "../abi/contract";
+import {getStorageIdentifier} from "../data/splittle-contract.js";
 
 import '@fontsource/poppins/700.css'
 
@@ -47,6 +49,22 @@ export default function Index() {
     }
   }
 
+  async function getIPFSHistory(signer){
+    const Ipfs_sc_addr = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
+    // console.log(abi);
+    console.log({in_function: signer})
+    const contract = new ethers.Contract(Ipfs_sc_addr, abi, signer)
+    // console.log(`contract is`,contract);
+    // const connection = contract.connect(signer)
+    const identifier = await contract.getStorageIdentifier();
+    console.log(identifier);
+    // const identifier = getStorageIdentifier(contract)
+    // const identifier = contract.getStorageIdentifier(connection)
+    // console.log(
+    //   "identifier: " + identifier
+    // );
+  }
+
   useEffect(() => {
     loadProvider()
   }, [])
@@ -63,8 +81,11 @@ export default function Index() {
       // console.log(`provider started for network ${}`)
       setProvider(() => providerInstance)
 
-      const signerInstance = providerInstance.getSigner();
+      const signerInstance = await providerInstance.getSigner();
+      // console.log({signer})
       setSigner(() => signerInstance);
+
+      getIPFSHistory(signerInstance)
     }
     else {
       console.log('Please make sure that you have metamask installed')

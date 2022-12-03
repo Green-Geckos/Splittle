@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import fs from 'fs';
+import abi from "../abi/contract";
 
 // remind
 function callRemindFunction(conn, address, amount){
@@ -14,8 +14,7 @@ function setStorageIdentifier(conn, ipfs_hash){
 }
 
 //get identifier
-async function getStorageIdentifier(){
-    const abiJSON = JSON.parse(fs.readFileSync('../abi/contract.json', 'utf-8'));
+async function getStorageIdentifier(conn){
     const identifier = await conn.getStorageIdentifier();
     return identifier;
 }
