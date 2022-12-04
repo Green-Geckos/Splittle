@@ -20,7 +20,7 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 
 ## Link for the deployed smart contract on polygonscan
-https://mumbai.polygonscan.com/address/0x1ca13eaeb600499ad7cfe57920c4b979ed588763 
+https://mumbai.polygonscan.com/address/0x995B1eB103101bF870Eee937a76421Bd7FB56122 
 
 We are building Splittle (decentralized splitwise app) . Now you can split your crypto bills in a very easy way. We are targeting the "best use of Polygon ID", and "best public goods" in the Polygon prize categories. 
 
