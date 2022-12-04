@@ -1,0 +1,28 @@
+{
+    "groups": {
+      "0": {
+        "groupId": 0,
+        "groupName": "bhai",
+        "members": [
+          "0x00",
+          "0x02",
+          "0x01"
+        ],
+        "userBalancesData": {
+          "0x00": 0,
+          "0x02": -10,
+          "0x01": 30
+        },
+        "expenses": [
+          {
+            "title": "jungle",
+            "amountPaidByUser": 100
+          },
+          {
+            "title": "0x02 and 0x00 settlement",
+            "amountPaidByUser": 0
+          }
+        ]
+      }
+    }
+  }

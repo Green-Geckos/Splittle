@@ -9,18 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.13",
     "@chakra-ui/react": "^2.4.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@fontsource/poppins": "^4.5.10",
+    "@fontsource/poppins": "^4.5.1",
+    "@pushprotocol/restapi": "^0.2.2",
+    "axios": "^1.2.0",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.6",
     "framer-motion": "^6",
     "next": "13.0.6",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.40.0",
+    "wagmi": "^0.8.10",
+    "web3.storage": "^4.4.0"
   },
   "devDependencies": {
+    "ethers": "^5.7.2",
     "hardhat": "^2.12.3"
   }
 }

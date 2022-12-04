@@ -1,50 +1,59 @@
 {
-    "userDetails":[
-        {
-            "userId" : 0, 
-            "address" : "0x00", 
-            "name" : "foo"
-        }, 
-        {
-            "userId" : 1, 
-            "address" : "0x01", 
-            "name" : "bar"
-        }, 
-        {
-            "userId" : 2, 
-            "address" : "0x02", 
-            "name" : "baz"
-        }
-    ], 
-    "groups":[
-        {
-            "groupId" : 0, 
-            "createdBy" : 1,
-            "members":[
-                0, 
-                2
-            ], 
-            "expensesIds":[
-                0
-            ]
-        }
-    ], 
-    "expenses" :[
-            {
-            "expenseId" : 0,
-            "paidBy" : {
-                "0" : 40, 
-                "1" : 60
-            }, 
-            "groupId" : 0,
-            "paymentDetails" :{
-                "AmountPaid" : 69, 
-                "splitDetails" : {
-                    "0" : 30, 
-                    "1" : 30, 
-                    "2" : 40
-                }
-            }
-        }
-    ]
+  "userDetails": [
+    {
+      "address": "0x00",
+      "name": "ram",
+      "balance": 20,
+      "ens": "ram.eth"
+    },
+    {
+      "address": "0x01",
+      "name": "shyam",
+      "balance": -30,
+      "ens": "shyam.eth"
+    },
+    {
+      "address": "0x02",
+      "name": "balram",
+      "balance": 10,
+      "ens": "balram.eth"
+    },
+    {
+      "address": "0x8791653aa21c1D9b55ADdadf92bEb7c60E42d72C",
+      "name": "",
+      "balance": 0
+    },
+    {
+      "address": "0x8791653aa21c1D9b55ADdadf92bEb7c60E42d72C",
+      "name": "",
+      "balance": 0
+    },
+    {
+      "address": "0x8791653aa21c1D9b55ADdadf92bEb7c60E42d72C",
+      "name": "",
+      "balance": 0
+    },
+    {
+      "address": "0x8791653aa21c1D9b55ADdadf92bEb7c60E42d72C",
+      "name": "",
+      "balance": 0
+    },
+    {
+      "address": "0x8791653aa21c1D9b55ADdadf92bEb7c60E42d72C",
+      "name": "",
+      "balance": 0
+    },
+    {
+      "address": "0x8791653aa21c1D9b55ADdadf92bEb7c60E42d72C",
+      "name": ""
+    },
+    {
+      "address": "0x482fB4cC32DEd74645Cb79D9589a03a0Acc563d3",
+      "name": "Rohit Ranjan",
+      "balance": 0
+    }
+  ],
+  "groups": [],
+  "expenses": [],
+  "fileCID": "bafybeifneutplhq3t7wdkeh2ckw7arb5vwdpd4bj3tk2axsszd2km2qngu"
 }

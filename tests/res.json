@@ -1,0 +1,157 @@
+{
+    "userDetails": [
+        {
+            "address": "0x00",
+            "userName": "foo",
+            "balance": -12
+        },
+        {
+            "address": "0x01",
+            "userName": "bar",
+            "balance": 26
+        },
+        {
+            "address": "0x02",
+            "userName": "baz",
+            "balance": -14
+        }
+    ],
+    "groups": [
+        {
+            "groupId": 0,
+            "createdBy": "0x01",
+            "groupName": "delta",
+            "members": [
+                "0x00",
+                "0x01",
+                "0x02"
+            ],
+            "expensesIds": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+            ]
+        }
+    ],
+    "expenses": [
+        {
+            "expenseId": 0,
+            "amountPaid": 100,
+            "groupId": 0,
+            "paidBy": {
+                "0x00": 40,
+                "0x01": 60
+            },
+            "splitDetails": {
+                "0x00": 30,
+                "0x01": 30,
+                "0x02": 40
+            }
+        },
+        {
+            "expenseId": 1,
+            "amountPaid": 100,
+            "groupId": 0,
+            "paidBy": {
+                "0x02": 100
+            },
+            "splitDetails": {
+                "0x01": 50,
+                "0x00": 50
+            }
+        },
+        {
+            "expenseId": 2,
+            "amountPaid": 100,
+            "groupId": 0,
+            "paidBy": {
+                "0x02": 100
+            },
+            "splitDetails": {
+                "0x01": 50,
+                "0x00": 50
+            }
+        },
+        {
+            "expenseId": 3,
+            "amountPaid": 100,
+            "groupId": 0,
+            "paidBy": {
+                "0x02": 100
+            },
+            "splitDetails": {
+                "0x01": 50,
+                "0x00": 50
+            }
+        },
+        {
+            "expenseId": 4,
+            "amountPaid": 100,
+            "groupId": 0,
+            "paidBy": {
+                "0x02": 100
+            },
+            "splitDetails": {
+                "0x01": 50,
+                "0x00": 50
+            }
+        },
+        {
+            "expenseId": 5,
+            "amountPaid": 100,
+            "groupId": 0,
+            "paidBy": {
+                "0x02": 100
+            },
+            "splitDetails": {
+                "0x01": 50,
+                "0x00": 50
+            }
+        },
+        {
+            "expenseId": 6,
+            "amountPaid": 100,
+            "groupId": 0,
+            "paidBy": {
+                "0x02": 100
+            },
+            "splitDetails": {
+                "0x01": 50,
+                "0x00": 50
+            }
+        },
+        {
+            "expenseId": 7,
+            "amountPaid": 100,
+            "groupId": 0,
+            "paidBy": {
+                "0x02": 100
+            },
+            "splitDetails": {
+                "0x01": 50,
+                "0x00": 50
+            }
+        },
+        {
+            "expenseId": 8,
+            "amountPaid": 100,
+            "groupId": 0,
+            "paidBy": {
+                "0x00": 0,
+                "0x01": 0,
+                "0x02": 100
+            },
+            "splitDetails": {
+                "0x01": 50,
+                "0x00": 50,
+                "0x02": 0
+            }
+        }
+    ]
+}
