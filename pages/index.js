@@ -4,7 +4,8 @@ import { Box, Flex,
   Button, Input, Text, 
   FormControl, FormLabel, 
   FormHelperText, FormErrorMessage,
-  Image
+  Image,
+  Divider
 } from '@chakra-ui/react'
 
 import { ethers } from 'ethers'
@@ -122,47 +123,66 @@ export default function Index() {
     <>
       <EthersNotFound isOpen={isOpen} onClose={onClose} />
       <Flex flexDirection={'column'} fontFamily={'poppins.700'} h='100vh' w='100vw'>
-        <Flex flexDir={'column'} justifyContent={'center'} w='100%' h='80px' maxH={'60px'} bg='brand.purple' >
-          <Flex h='75%' marginLeft={2} w='fit-content' rounded={'xl'} bgColor={'white'}>
-            <Image src='logo.png' height={'95%'}/>
+        <Flex flexDir={'column'} alignItems='center' justifyContent={'center'} w='100%' h='150px' maxH={'60px'} bg='brand.purple' >
+          <Flex w={'70%'} h='80%' dir='column' alignItems={'center'}>
+            <Flex h='90%' marginLeft={2} w='fit-content' rounded={'xl'} bgColor={'white'}>
+              <Image src='logo.png' height={'95%'}/>
+            </Flex>
           </Flex>
         </Flex>
-        <Flex justifyContent={'center'} flexDir='column' alignItems='center' h='100%' w='100%' >
-          <form onSubmit={handleSubmit(() => { })}>
-            <Flex flexDir={'column'} alignItems='center' w='80%' h='30vh' maxW='350px' >
-              <FormControl isInvalid={errors.name}>
-                <Flex flexDir={'column'} w='100%'>
-                  <FormLabel htmlFor='name' mb='8px'>Name:</FormLabel>
-                  <Input
-                    id='name'
-                    placeholder='Your name'
-                    {...register('name', {
-                      required: 'This is required',
-                      minLength: { value: 4, message: 'Minimum length should be 4' },
-                    })}
-                    onChange={handleChange}
-                    size='md'
-                  />
-                  <FormHelperText
-                    fontSize={'xs'}>
-                    This is like a nick name stored with us for this address
-                  </FormHelperText>
-                  <FormErrorMessage>
-                    {errors.name && errors.name.message}
-                  </FormErrorMessage>
-                </Flex>
-              </FormControl>
-              <Button
-                onClick={handleConnectWallet}
-                colorScheme='teal'
-                w='100%'
-                size='md'
-                type='submit'
-                mt={4} >
-                Connect Wallet
-              </Button>
-            </Flex>
-          </form>
+        <Flex dir='row' h='100%'>
+          <Flex justifyContent={'center'} alignItems={'center'} flexDir='column' h='100%' w='50%' >
+            <form onSubmit={handleSubmit(() => { })}>
+              <Flex flexDir={'column'} justifyContent='center' h='30vh' >
+                <Text fontSize={'3xl'}>
+                  Sign In/Sign Up
+                </Text>
+                <Divider/>
+                <Flex padding={'4'}/>
+                <FormControl isInvalid={errors.name}>
+                  <Flex flexDir={'column'} w='100%'>
+                    <FormLabel htmlFor='name' mb='8px'>Name:</FormLabel>
+                    <Input
+                      id='name'
+                      placeholder='Your name'
+                      {...register('name', {
+                        required: 'This is required',
+                        minLength: { value: 4, message: 'Minimum length should be 4' },
+                      })}
+                      onChange={handleChange}
+                      size='md'
+                    />
+                    <FormHelperText
+                      fontSize={'xs'}>
+                      This is like a nick name stored with us for this address
+                    </FormHelperText>
+                    <FormErrorMessage>
+                      {errors.name && errors.name.message}
+                    </FormErrorMessage>
+                  </Flex>
+                </FormControl>
+                <Button
+                  onClick={handleConnectWallet}
+                  colorScheme='teal'
+                  w='100%'
+                  size='md'
+                  type='submit'
+                  mt={4} >
+                  Connect Wallet
+                </Button>
+              </Flex>
+            </form>
+          </Flex>
+          <Divider dir='vertical' width={'ß'}/>
+          <Flex justifyContent={'center'} alignItems={'center'} flexDir='column' h='100%' w='50%' >
+            <Text fontSize={'5xl'} color={''}>
+              Split and Settle
+            </Text>
+            
+            <Text fontSize={'2xl'} paddingTop="8">
+              Save your hassle
+            </Text>
+          </Flex>
         </Flex>
       </Flex>
     </>
