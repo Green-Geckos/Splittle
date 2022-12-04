@@ -1,7 +1,7 @@
 import { addExpenseHandler } from "../../app/handler";
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     const reqBody = req.body;
-    addExpenseHandler(reqBody.from, reqBody.to, reqBody.amount, reqBody.groupId);
+    await addExpenseHandler(reqBody.paidBy, reqBody.groupId, reqBody.splitDetails, reqBody.amountPaid, reqBody.expenseTitle , reqBody.fileCID);
     res.status(200).json();
 }
