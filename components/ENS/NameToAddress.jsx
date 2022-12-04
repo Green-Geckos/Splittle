@@ -2,7 +2,7 @@ import React from 'react';
 import { useEnsAddress, useEnsAvatar } from 'wagmi';
 import { Spinner } from '@chakra-ui/react'
 
-export default function Number(props) {
+export default function NameToAddress(props) {
     const {data, isLoading, isError} = useEnsAddress({
         name: props.ensName,
         chainId: '1'

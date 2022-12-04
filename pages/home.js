@@ -21,6 +21,7 @@ import {
 } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import '@fontsource/poppins/700.css'
+import AddressToName from '../components/ENS/AddressToName'
 
 const test = {
   "groups": {
@@ -103,8 +104,6 @@ export default function Index() {
   const [expenseName, setExpenseName] = useState('')
   const [createExpenseError, setCreateExpenseError] = useState(false)
   const [selectedGroupName, setSelectedGroupName] = useState('')
-
-
 
   useEffect(() => {
     setMounted(true)
@@ -210,7 +209,11 @@ export default function Index() {
                       <List>
                         {
                           groupMembers.map((address) => (
+                            <>
                             <ListItem key={address}>{address}</ListItem>
+                            <Divider dir='vertical' />
+                            <AddressToName address={address}/>
+                            </>
                           ))
 
                         }
