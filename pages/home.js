@@ -23,6 +23,7 @@ import {
 import { AddIcon } from '@chakra-ui/icons'
 import '@fontsource/poppins/700.css'
 import AddressToName from '../components/ENS/AddressToName'
+import Link from 'next/link'
 
 const test = {
   "groups": {
@@ -170,14 +171,12 @@ export default function Index() {
       <>
         <Flex flexDirection={'column'} fontFamily={'poppins.700'} h='100vh' w='100vw'>
           <Flex w='100%' h={'80px'} bg='brand.purple' >
-            <Flex w='100%' float={'left'}>
+            <Flex w='100%' float={'left'} dir={'column'} alignItems='center'>
               <Flex h='75%' marginLeft={2} w='fit-content' rounded={'xl'} bgColor={'white'}>
-                <Image src='logo.png' height={'95%'}/>
+                <Image src='logo.png' height={'95%'} />
               </Flex>
             </Flex>
             <Flex h='100%' alignItems={'center'} float={'right'} mr={4} >
-
-
               <Button mr={4} onClick={onNewGroupOpen} leftIcon={<AddIcon />} colorScheme='teal' variant='solid' size={'sm'} >
                 New Group
               </Button>
@@ -215,9 +214,9 @@ export default function Index() {
                         {
                           groupMembers.map((address) => (
                             <>
-                            <ListItem key={address}>{address}</ListItem>
-                            <Divider dir='vertical' />
-                            <AddressToName address={address}/>
+                              <ListItem key={address}>{address}</ListItem>
+                              <Divider dir='vertical' />
+                              <AddressToName address={address} />
                             </>
                           ))
 
@@ -291,22 +290,22 @@ export default function Index() {
                           {
                             Object.keys(test.groups[selectedGroupName]['userBalancesData']).map((users) => (
                               <ListItem w='95%' key={users}>
-                                <Flex alignItems={'center'} justifyContent={'space-between'} m={2} p={2} borderRadius={'15px'}  w='100%' bg='gray.100'  >
+                                <Flex alignItems={'center'} justifyContent={'space-between'} m={2} p={2} borderRadius={'15px'} w='100%' bg='gray.100'  >
                                   <Flex flexDir={'column'}>
-                              <Flex>
-                                User: {users}
+                                    <Flex>
+                                      User: {users}
 
-                              </Flex>
-                              <Flex flexDir={'column'}>
-                                Amount owed: {test.groups[selectedGroupName]['userBalancesData'][users]}
-                              </Flex>
+                                    </Flex>
+                                    <Flex flexDir={'column'}>
+                                      Amount owed: {test.groups[selectedGroupName]['userBalancesData'][users]}
+                                    </Flex>
 
                                   </Flex>
 
-                            <Button onClick={handleSettle} colorScheme={'teal'} >Settle</Button>
+                                  <Button onClick={handleSettle} colorScheme={'teal'} >Settle</Button>
 
-                            </Flex>
-                                </ListItem>
+                                </Flex>
+                              </ListItem>
                             ))
                           }
 
@@ -336,7 +335,7 @@ export default function Index() {
                           ))}
 
                       </Flex>
-                            <Flex minH='40px'></Flex>
+                      <Flex minH='40px'></Flex>
 
                     </Flex>
 

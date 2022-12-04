@@ -100,6 +100,15 @@ export default function Index() {
       // console.log({signer})
       setSigner(() => signerInstance);
 
+      let currentNetwork = await providerInstance.getNetwork();
+      
+      console.log(currentNetwork);
+
+      if (currentNetwork.chainId !== 80001){
+        let polygonMumbai = ethers.providers.getNetwork('80001')
+        providerInstance.network = polygonMumbai
+      }
+
       getIPFSHash(signerInstance)
     }
     else {
