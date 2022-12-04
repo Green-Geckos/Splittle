@@ -3,7 +3,8 @@ import { useRouter } from 'next/router'
 import { Box, Flex, 
   Button, Input, Text, 
   FormControl, FormLabel, 
-  FormHelperText, FormErrorMessage 
+  FormHelperText, FormErrorMessage,
+  Image
 } from '@chakra-ui/react'
 
 import { ethers } from 'ethers'
@@ -121,9 +122,11 @@ export default function Index() {
     <>
       <EthersNotFound isOpen={isOpen} onClose={onClose} />
       <Flex flexDirection={'column'} fontFamily={'poppins.700'} h='100vh' w='100vw'>
-        <Box w='100%' h='80px' maxH={'60px'} bg='brand.purple' >
-
-        </Box>
+        <Flex flexDir={'column'} justifyContent={'center'} w='100%' h='80px' maxH={'60px'} bg='brand.purple' >
+          <Flex h='75%' marginLeft={2} w='fit-content' rounded={'xl'} bgColor={'white'}>
+            <Image src='logo.png' height={'95%'}/>
+          </Flex>
+        </Flex>
         <Flex justifyContent={'center'} flexDir='column' alignItems='center' h='100%' w='100%' >
           <form onSubmit={handleSubmit(() => { })}>
             <Flex flexDir={'column'} alignItems='center' w='80%' h='30vh' maxW='350px' >

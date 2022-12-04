@@ -18,6 +18,7 @@ import {
   FormControl,
   FormErrorMessage,
   Select,
+  Image
 } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import '@fontsource/poppins/700.css'
@@ -169,7 +170,11 @@ export default function Index() {
       <>
         <Flex flexDirection={'column'} fontFamily={'poppins.700'} h='100vh' w='100vw'>
           <Flex w='100%' h={'80px'} bg='brand.purple' >
-            <Flex w='100%' float={'left'} />
+            <Flex w='100%' float={'left'}>
+              <Flex h='75%' marginLeft={2} w='fit-content' rounded={'xl'} bgColor={'white'}>
+                <Image src='logo.png' height={'95%'}/>
+              </Flex>
+            </Flex>
             <Flex h='100%' alignItems={'center'} float={'right'} mr={4} >
 
 
