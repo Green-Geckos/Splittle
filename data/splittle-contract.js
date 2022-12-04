@@ -1,37 +1,28 @@
-// settle
-
 import { ethers } from "ethers";
-import abi from "../abi/contracts-abi.json";
-
-const address = "0x7FEFe32cC7abDed3b38e08F9406F3ab41A844123";
-
-
-const provider = ethers.providers.Web3Provider(window.ethereum);
-const signer = provider.getSigner();
-const splittle_contract = new ethers.Contract(
-    addressOrName= address,
-    contractInterface=abi,
-    signerOrProvider=signer
-)
-
-const connection = splittle_contract.connect(signer)
+import abi from "../abi/contract";
 
 // remind
-function call_remind_function(){
+function callRemindFunction(conn, address, amount){
     // TODO
-    connection.remind("", 30);
+    conn.remind(address, amount);
 }
 
 // set storage identifier
-function set_storage_identifier(){
+function setStorageIdentifier(conn, ipfs_hash){
     // TODO
-    connection.setStorageIdentifier("IPFS_HASH");
+    conn.setStorageIdentifier(ipfs_hash);
+}
+
+//get identifier
+async function getStorageIdentifier(conn){
+    const identifier = await conn.getStorageIdentifier();
+    return identifier;
 }
 
 // approve
 // direct transfer. 
 // call backend to spread the word
-async function approve(to, value){
+async function approve(signer, to, value){
     // ethers.js send transaction
     const response = await signer.sendTransation({
         to: to,

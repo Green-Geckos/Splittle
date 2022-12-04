@@ -1,11 +1,17 @@
 import { useState, useEffect, use } from 'react'
 import { useRouter } from 'next/router'
-import { Box, Flex, Button, Input, Text, FormControl, FormLabel, FormHelperText, FormErrorMessage } from '@chakra-ui/react'
+import { Box, Flex, 
+  Button, Input, Text, 
+  FormControl, FormLabel, 
+  FormHelperText, FormErrorMessage 
+} from '@chakra-ui/react'
 
 import { ethers } from 'ethers'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import EthersNotFound from '../components/AlertBoxes/EthersNotFound';
+import abi from "../abi/contract";
+import {getStorageIdentifier} from "../data/splittle-contract.js";
 
 import '@fontsource/poppins/700.css'
 // import { getStorageIdentifier, setStorageIdentifier } from '../data/splittle-contract';
@@ -57,17 +63,42 @@ export default function Index() {
     }
   }
 
-  
+  async function getIPFSHash(signer){
+    const Ipfs_sc_addr = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
+    // console.log(abi);
+    const contract = new ethers.Contract(Ipfs_sc_addr, abi, signer)
+    // console.log(`contract is`,contract);
+    // const connection = contract.connect(signer)
+    const identifier = await contract.getStorageIdentifier();
+    console.log(identifier);
+    // const identifier = getStorageIdentifier(contract)
+    // const identifier = contract.getStorageIdentifier(connection)
+    // console.log(
+    //   "identifier: " + identifier
+    // );
+  }
+
+  useEffect(() => {
+    loadProvider()
+  }, [])
 
   async function loadProvider() {
     if (window.ethereum) {
-      const providerInstance = new ethers.providers.Web3Provider(window.ethereum);
+      window.ethereum?.enable();
+      var baseUrl = process.env.NEXT_PUBLIC_INFURA_API_URL;
+      const providerInstance = new ethers.providers.Web3Provider(window.ethereum)
 
-      await providerInstance.send('eth_requestAccounts', []);
+      // MetaMask requires requesting permission to connect users accounts
+      await providerInstance.send("eth_requestAccounts", []);
+      
+      // console.log(`provider started for network ${}`)
       setProvider(() => providerInstance)
 
-      const signerInstance = providerInstance.getSigner();
+      const signerInstance = await providerInstance.getSigner();
+      // console.log({signer})
       setSigner(() => signerInstance);
+
+      getIPFSHash(signerInstance)
     }
     else {
       console.log('Please make sure that you have metamask installed')
