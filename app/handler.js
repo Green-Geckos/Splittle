@@ -106,10 +106,15 @@ export async function groupRepresentationData(groupId, userAddress, fileCID){
 export async function landingPageHandler(userAddress, fileCID) {
     const data = await getJSONData(fileCID);
     const returnData = {};
-    returnData.groups = {}
-    data.groups.forEach(async gp => {
-        returnData.groups[gp.groupId] = await groupRepresentationData(gp.groupId, userAddress, fileCID);
-    });
+    const groups = {}
+    console.log(data.groups);
+    for(let i = 0; i < data.groups.length; i++){
+        if(data.groups[i].members.includes(`${userAddress}`)){
+            const res = await groupRepresentationData(data.groups[i].groupId, userAddress, fileCID);
+            groups[data.groups[i].groupId] = res;
+        }
+    }
+    returnData.groups = groups;
     returnData.user = data.userDetails.find((ele) => ele.address === userAddress);
     return returnData;
 }

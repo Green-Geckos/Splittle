@@ -4,6 +4,7 @@ const dataLocation = 'data.json';
 export async function getJSONData(fileCID) {
     const res = await getDataFromWeb3Storage(fileCID);
     return res.json();
+    // return JSON.parse(fs.readFileSync(dataLocation, 'utf8'));
 }
 
 export function getLatestfileCID() {

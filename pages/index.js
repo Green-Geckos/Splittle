@@ -11,17 +11,14 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import EthersNotFound from '../components/AlertBoxes/EthersNotFound';
 import abi from "../abi/contract";
-import {getStorageIdentifier} from "../data/splittle-contract.js";
 
 import '@fontsource/poppins/700.css'
-// import { getStorageIdentifier, setStorageIdentifier } from '../data/splittle-contract';
 
 export default function Index() {
   const [name, setName] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [provider, setProvider] = useState();
   const [signer, setSigner] = useState();
-  const [fileCID, setFileCID] = useState("bafybeiaiepjlf47zjqrlpiemalf2uekxq7366wxmelsxwdjulm7ny3n2m4");
 
   useEffect(() => {
     loadProvider()
@@ -51,31 +48,46 @@ export default function Index() {
       await axios.post('/api/addUserHandler', {
         username: name,
         userAddress: address, 
-        fileCID :fileCID
+        fileCID : localStorage.getItem("fileCID"),
       });
       const res = await axios.get(
         '/api/getLatestfileCID',
       );
-      res ? setFileCID(res.data.fileCID) : setFileCID("test");
       console.log("fileCID: ", res, res.data.fileCID);
-      // await setStorageIdentifier(res.data.fileCID);
+      setIPFSHash(res.data.fileCID);
+      localStorage.setItem("fileCID", res.data.fileCID);
       router.push('/home');
     }
   }
 
+  async function storeFileCID() {
+    const providerInstance = new ethers.providers.Web3Provider(window.ethereum)
+    await providerInstance.send("eth_requestAccounts", []);
+    setProvider(() => providerInstance)
+    const signerInstance =  providerInstance.getSigner();
+    setSigner(() => signerInstance);
+    const newFileCID =  await getIPFSHash(signerInstance);
+    console.log("newFileCID getIPFS: ", newFileCID);
+    localStorage.setItem("fileCID", newFileCID);
+  }
+
+
   async function getIPFSHash(signer){
     const Ipfs_sc_addr = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
-    // console.log(abi);
     const contract = new ethers.Contract(Ipfs_sc_addr, abi, signer)
-    // console.log(`contract is`,contract);
-    // const connection = contract.connect(signer)
     const identifier = await contract.getStorageIdentifier();
-    console.log(identifier);
-    // const identifier = getStorageIdentifier(contract)
-    // const identifier = contract.getStorageIdentifier(connection)
-    // console.log(
-    //   "identifier: " + identifier
-    // );
+    return identifier;
+  }
+
+  async function setIPFSHash(newFileCID){
+    const providerInstance = new ethers.providers.Web3Provider(window.ethereum)
+    await providerInstance.send("eth_requestAccounts", []);
+    setProvider(() => providerInstance)
+    const signerInstance =  providerInstance.getSigner();
+    setSigner(() => signerInstance);
+    const Ipfs_sc_addr = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
+    const contract = new ethers.Contract(Ipfs_sc_addr, abi, signerInstance)
+    await contract.setStorageIdentifier(newFileCID);
   }
 
   useEffect(() => {
@@ -85,20 +97,7 @@ export default function Index() {
   async function loadProvider() {
     if (window.ethereum) {
       window.ethereum?.enable();
-      var baseUrl = process.env.NEXT_PUBLIC_INFURA_API_URL;
-      const providerInstance = new ethers.providers.Web3Provider(window.ethereum)
-
-      // MetaMask requires requesting permission to connect users accounts
-      await providerInstance.send("eth_requestAccounts", []);
-      
-      // console.log(`provider started for network ${}`)
-      setProvider(() => providerInstance)
-
-      const signerInstance = await providerInstance.getSigner();
-      // console.log({signer})
-      setSigner(() => signerInstance);
-
-      getIPFSHash(signerInstance)
+      await storeFileCID();
     }
     else {
       console.log('Please make sure that you have metamask installed')
